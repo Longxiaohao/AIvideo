@@ -19,11 +19,9 @@ Write the script and voiceover first, generate and validate the human-model firs
 
 ## Why I Built This Project
 
-I built these Skills because, while making cross-border e-commerce videos myself, I kept running into the same practical question: how do I keep the cost down and still get a usable video? In my experience, expensive commercial tools are not always necessary. The free Doubao Seedance Fast workflow, together with Grok and Veo, already covers most of the scripting, image generation, and image-to-video work I need.
+I organized the prompts, routing rules, and lessons from my own cross-border e-commerce video projects into a reusable SOP. Anyone making commerce videos or preparing an AI-video portfolio can follow the same route, avoid some of the detours, and use the free Doubao Seedance Fast workflow with Grok and Veo to cover most of the path from scripting and image generation to image-to-video.
 
-I turned the prompts and routing rules that survived my actual projects, revisions, and failed attempts into this reusable SOP. I want it to help both people making low-cost e-commerce videos and job seekers who need real AI-video workflow experience and portfolio pieces.
-
-When the product information and references are ready, I use this workflow to switch between tools and aim to put together a fairly complex AI commerce video within one hour. That is my workflow target, not a promise that every product will take exactly one hour. Queue time, product difficulty, and retries still matter.
+With complete product information and references, the workflow can switch between tools and aims to produce a fairly complex AI commerce video within one hour. It can also serve as a practical production reference and portfolio workflow. Actual time still depends on generation queues, product difficulty, and retries.
 
 The prompts in this repository are the original versions I actually use. The Skills only identify the task, check the inputs, and route the workflow. I do not rewrite or shorten these prompts just to make them look cleaner or more polished.
 
@@ -67,14 +65,14 @@ I inspect the result for a natural face, consistent exposed-skin texture, correc
 
 The same script and assets can move between tools according to budget, queue time, and generation quality without rebuilding the entire workflow.
 
-| Task | Preferred tool | Lower-cost or fallback path | What the Skill handles |
-| --- | --- | --- | --- |
-| Winning-video breakdown | Codex / Claude | Any Agent that can inspect video and images | Extracts shots, actions, pacing, and reusable structure |
-| Human-model first frame | GPT Web / GPT Image 2 | Complete missing character and product references, then regenerate any failed frame | Locks character, skin, hands, product scale, and opening composition |
-| Complex multi-scene video | Veo 3.1 | Grok | Defines jump-cut timing, multi-angle camera paths, and continuity locks |
-| Fast image-to-video | Grok / Veo | Doubao Seedance Fast | Compresses the plan into a physically executable short-video unit |
-| Face-reference preprocessing | PromptHub Face Tools | Keep the original and create a separate mask reference | Preserves character, product, and dialogue anchors |
-| High-retention opening | Independent grid assets | Reorder existing shots | Breaks down the opening structure and organizes shot order |
+| Task | Preferred tool | What the Skill handles |
+| --- | --- | --- |
+| Winning-video breakdown | Codex / Claude | Extracts shots, actions, pacing, and reusable structure |
+| Human-model first frame | GPT Web / GPT Image 2 | Locks character, skin, hands, product scale, and opening composition |
+| Complex multi-scene video | Veo 3.1 | Defines jump-cut timing, multi-angle camera paths, and continuity locks |
+| Fast image-to-video | Grok / Veo | Compresses the plan into a physically executable short-video unit |
+| Face-reference preprocessing | PromptHub Face Tools | Preserves character, product, and dialogue anchors |
+| High-retention opening | Independent grid assets | Breaks down the opening structure and organizes shot order |
 
 Fallback changes the execution tool only. It must not alter verified product facts, exact dialogue, scale, assembly steps, or any original prompt.
 
