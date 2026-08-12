@@ -1,6 +1,6 @@
 ---
 name: facebook-diy-video-workflow
-description: Create Facebook ecommerce scripts, product images, and AI-video prompts with the field-tested source prompts bundled in this repository. Use for Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, and fragile perspective. Route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; screen complex products before generation. Treat all bundled prompt files as immutable source text.
+description: Create Facebook ecommerce scripts, human-model first frames, product images, and AI-video prompts with the field-tested source prompts bundled in this repository. Use for real-person or talking-head first-frame prompts, GPT Image 2 character images, Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, and fragile perspective. Route explicit human-model requests through the first-frame image module before image-to-video; route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; screen complex products before generation. Treat all bundled prompt files as immutable source text.
 ---
 
 # Facebook DIY Video Workflow
@@ -17,6 +17,8 @@ Use the bundled original prompts without rewriting them.
 
 ## Select a Prompt
 
+- For a natural lifestyle human-model first frame, read and use [references/human-model-prompts/natural-lifestyle-first-frame-prompt.md](references/human-model-prompts/natural-lifestyle-first-frame-prompt.md) verbatim.
+- For the detailed Chinese beauty-presenter first frame, read and use [references/human-model-prompts/beauty-presenter-first-frame-prompt.md](references/human-model-prompts/beauty-presenter-first-frame-prompt.md) verbatim.
 - For any Seedance request, read and use [references/seedance-fast-10s-prompt.md](references/seedance-fast-10s-prompt.md) verbatim.
 - For a parent-child DIY request, read and use [references/parent-child-diy-image-prompt.md](references/parent-child-diy-image-prompt.md) verbatim, then continue through the Veo/Grok prompt as defined below.
 - For Veo, Veo 3, Veo 3.1, Grok, Grok prompt, multi-scene video switching, or continuous multi-angle camera movement, read and use [references/veo-grok-multi-scene-prompt.md](references/veo-grok-multi-scene-prompt.md) verbatim.
@@ -36,6 +38,22 @@ Before any image or video generation, inspect the product for complex wires, cor
 4. Stop the image-to-video branch if a critical part, path, endpoint, count, connection, or perspective relationship is wrong. Use the reference's fallback strategy instead of attempting to hide the error with motion.
 
 This preflight supplements the selected original prompt without modifying it.
+
+## Route Human-Model First Frames
+
+Apply this route when the user mentions a human-model prompt, real-person first frame, talking-head character image, presenter master image, or equivalent wording in any language.
+
+1. Treat this as an image stage that runs before image-to-video. Do not start the Veo, Grok, or Seedance stage until the first frame passes validation.
+2. Select exactly one source prompt. Use the natural lifestyle prompt for a warm, non-influencer character whose short description, outfit, and product action come from the user. Use the beauty-presenter prompt for the specified 9:16 Chinese skincare-presenter portrait.
+3. Never merge the two source prompts. If the user explicitly requests both, run them as two separate image tasks and preserve each source file independently.
+4. For the natural lifestyle prompt, require the user's explicit values for `简要描述人物+穿搭` and `人物与产品的动作`. Supply those values as separate runtime inputs; do not edit the stored source prompt or infer missing product use.
+5. For the beauty-presenter prompt, require `参考的妆容.jpg`, `发箍.png`, and `服装.png` when the user expects the named reference matching. If any required reference is missing, ask only for the missing file instead of pretending it was supplied.
+6. Submit the selected prompt to GPT Web with GPT Image 2 together with the user's references and separately supplied facts. Keep product scale, grip, contact points, clothing, hairstyle, face direction, mouth visibility, and lighting consistent with the selected prompt and references.
+7. Inspect the generated frame at full size. Verify natural facial identity, consistent skin texture, correct fingers and hands, unobstructed eyes and mouth, believable product geometry, correct person-product action, usable framing, and no unintended text or interface elements.
+8. Reject and regenerate the still image when any identity, anatomy, product, scale, contact, or lighting error would become visible in motion. A video prompt cannot repair a structurally wrong first frame.
+9. After approval, keep this frame as the character and opening-frame anchor. If face-mask preprocessing is requested, create the separate mask reference next; then route to Veo, Grok, or Seedance as requested.
+
+Because this workflow is primarily image-to-video, the first-frame image determines most of the final video's realism. Treat first-frame approval as a hard quality gate, not as an optional preview.
 
 ## Prepare Face-Mask References
 
@@ -66,14 +84,14 @@ This route overrides the generic Veo/Grok direct route, the post-script product-
 
 ## Route Video Prompt Requests
 
-Apply this routing after checking for the parent-child DIY route and before the script and post-script image routes:
+Apply this routing after completing any explicitly requested human-model or parent-child image stage and before the script and post-script image routes:
 
 1. Match tool names case-insensitively and recognize equivalent wording in any language.
 2. If the request mentions Seedance, select only the original Seedance Fast prompt. Require the real product usage method, product reference, size evidence when scale matters, requested duration, aspect ratio, and any dialogue before execution. Do not reuse the example product facts as facts about the user's product.
 3. Otherwise, if parent-child DIY is present, execute the complete parent-child DIY route before producing the Veo/Grok prompt.
 4. Otherwise, if the request mentions Veo, Veo 3, Veo 3.1, Grok, a Grok prompt, multi-scene video switching, or continuous multi-angle camera movement, select only the original Veo/Grok prompt.
 5. When the Veo/Grok route is selected, preserve the prompt's A-E mode routing. Use mode E only for true scene changes with explicit timed jump cuts; keep multiple angles within one scene as continuous physical camera movement.
-6. A selected video-prompt branch overrides the default post-script three-image branch unless the user explicitly requests the images as an additional deliverable.
+6. A selected video-prompt branch overrides the default post-script three-image branch unless the user explicitly requests the images or a human-model first frame as an additional deliverable.
 7. If both Seedance and Veo/Grok are explicitly requested, produce separate outputs for each tool in the user's requested order. Never merge their source prompts.
 
 ## Route Post-Script Images
@@ -91,9 +109,9 @@ The unboxing branch overrides the multi-scene prohibition on grids only for its 
 ## Run the Workflow
 
 1. Screen the product for complex-generation risks and apply the preflight module when needed.
-2. Check for an explicit Seedance request, then the parent-child DIY route, then the remaining video-prompt, script, or image routes.
-3. Confirm the required product image and reference video are available when the selected prompt depends on them.
-4. Generate and validate the required image references before video generation.
+2. Complete the human-model first-frame route when explicitly requested, then check for Seedance, parent-child DIY, and the remaining video-prompt, script, or image routes.
+3. Confirm the required product image, dimensions, character references, and reference video are available when the selected prompt depends on them.
+4. Generate and validate every required image reference before video generation. Stop when a first-frame defect would damage identity, anatomy, product truth, or realism in motion.
 5. Prepare a separate face-mask reference when requested, then continue through the selected video branch.
 6. Submit the original prompt together with the user's attachments and separately supplied facts.
 7. Follow the output format required by the selected prompt exactly.

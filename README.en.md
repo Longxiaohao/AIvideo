@@ -4,7 +4,7 @@
 
 **Codex Skills and field-tested prompt SOPs for producing complex AI commerce videos at lower cost.**
 
-Write the script and voiceover first, generate images, prepare face-mask references, turn images into video, build a high-retention grid opening, and use Codex or Claude to break down reference videos.
+Write the script and voiceover first, generate and validate the human-model first frame and product images, prepare face-mask references, turn images into video, build a high-retention grid opening, and use Codex or Claude to break down reference videos.
 
 [![GitHub stars](https://img.shields.io/github/stars/Longxiaohao/AIvideo?style=flat-square)](https://github.com/Longxiaohao/AIvideo/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](./LICENSE)
@@ -32,7 +32,7 @@ The prompts in this repository are the original versions I actually use. The Ski
 ```mermaid
 flowchart LR
     A["Codex / Claude<br/>Break down winning videos"] --> B["Script and voiceover"]
-    B --> C["Product and scene images"]
+    B --> C["Human-model first frame<br/>Product and scene images"]
     C --> D["Face-mask<br/>reference preprocessing"]
     D --> E["Veo / Grok / Seedance<br/>Image-to-video"]
     E --> F["Grid-style viral opening"]
@@ -41,10 +41,27 @@ flowchart LR
 
 1. Use Codex or Claude to break down a successful reference video and extract its opening structure, shots, production actions, and pacing.
 2. Write the script and voiceover from verified product facts, locking the audience, dialogue, scenes, and target duration.
-3. Generate product displays, parent-child DIY scenes, unboxing images, or first and last frames from the product image, dimensions, and script.
+3. Generate and validate the human-model first frame, product displays, parent-child DIY scenes, unboxing images, or first and last frames from the character requirements, product image, dimensions, and script.
 4. When a portrait needs masking, keep the original and create a separate processed face reference.
 5. Select Veo 3.1, Grok, or the free Doubao Seedance Fast according to budget and task complexity.
 6. Build a high-retention opening from grid assets, then complete standard editing, sound, and delivery.
+
+## Human-Model First-Frame Module
+
+> **This workflow is primarily image-to-video, so the image determines the video's realism.**
+
+In my actual projects, the first frame is the part of a real-person video I cannot afford to rush. If the face, skin, hair, fingers, visible mouth, product scale, or person-product action is already wrong in the still image, Veo, Grok, or Seedance will not repair it automatically. Motion usually makes the defect more obvious. I therefore finish and inspect the human-model first frame before moving on to face masking or image-to-video.
+
+I keep the two prompts I currently use as separate source files in the English-named [`human-model-prompts`](./skills/facebook-diy-video-workflow/references/human-model-prompts/) directory. I do not blend them into a newly rewritten prompt:
+
+| Module | When I use it | Additional runtime inputs |
+| --- | --- | --- |
+| [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md) | A warm, natural, non-influencer lifestyle model whose description and action change with the product | Short character and outfit description, real person-product action, product image, and dimensions when scale matters |
+| [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md) | A 9:16 front-facing Chinese skincare-presenter frame with detailed skin, makeup, wardrobe, lighting, and negative constraints | `参考的妆容.jpg`, `发箍.png`, `服装.png`, plus a product reference when the product appears |
+
+Both files preserve the original Chinese text I supplied. For case one, I pass the short character-and-outfit description and the person-product action as separate project inputs instead of writing them into the source file. For case two, I supply every named reference image rather than pretending the model has seen a missing file. I then place the selected source prompt, references, and separate project facts into GPT Web and generate the frame with [GPT Image 2](https://developers.openai.com/api/docs/models/gpt-image-2).
+
+I inspect the result for a natural face, consistent exposed-skin texture, correct hands and fingers, unobstructed eyes and mouth, correct product structure and scale, believable contact between the person and product, and the absence of unintended text or interface elements. If a critical check fails, I regenerate the still instead of sending it into the video stage.
 
 ## Tool Fallback Strategy
 
@@ -53,6 +70,7 @@ The same script and assets can move between tools according to budget, queue tim
 | Task | Preferred tool | Lower-cost or fallback path | What the Skill handles |
 | --- | --- | --- | --- |
 | Winning-video breakdown | Codex / Claude | Any Agent that can inspect video and images | Extracts shots, actions, pacing, and reusable structure |
+| Human-model first frame | GPT Web / GPT Image 2 | Complete missing character and product references, then regenerate any failed frame | Locks character, skin, hands, product scale, and opening composition |
 | Complex multi-scene video | Veo 3.1 | Grok | Defines jump-cut timing, multi-angle camera paths, and continuity locks |
 | Fast image-to-video | Grok / Veo | Doubao Seedance Fast | Compresses the plan into a physically executable short-video unit |
 | Face-reference preprocessing | PromptHub Face Tools | Keep the original and create a separate mask reference | Preserves character, product, and dialogue anchors |
@@ -110,6 +128,7 @@ I ran into the same problem with products that contain many small clothes clips.
 ## Capabilities
 
 - **Facebook mature-audience voiceovers**: generate natural spoken scripts for North American audiences aged 35–45 from product references.
+- **Human-model first frames**: use either the natural lifestyle or beauty-presenter source prompt to generate and validate an image-to-video character master with GPT Image 2.
 - **DIY reference-video recreation**: analyze real production steps and generate a 15-second Facebook AI-video script.
 - **Parent-child DIY image-to-video**: generate three independent 9:16 American family DIY images with GPT Image 2, then compile a Veo 3.1 or Grok first-and-last-frame video prompt.
 - **Multi-scene product display**: after the voiceover, generate three independent 9:16 product images in distinct scenes by default.
@@ -133,6 +152,7 @@ I ran into the same problem with products that contain many small clothes clips.
 
 | User mentions | Automatic action |
 | --- | --- |
+| Human-model module, real-person first frame, or talking-head character master | Select one original human-model prompt, generate and validate it with GPT Image 2, then continue to video |
 | `Seedance` | Prioritize the Seedance Fast branch |
 | Face masking, Black Fishnet, Scribble Mask, or Face Separation | Create a separate processed face reference, then continue to the Seedance video branch |
 | Complex wires, many connectors, clips, or repeated parts | Run complex-product screening first and switch to real footage or split shots when structure validation fails |
@@ -189,6 +209,8 @@ Use natural language after installation. You do not need to select reference fil
 
 | Example request | What the Skill does |
 | --- | --- |
+| "Use the natural lifestyle model prompt to make a real-person first frame for this product." | Requires the character, outfit, and product action, then runs case one and validates the frame |
+| "Use the skincare-presenter prompt for a 9:16 talking-head character master." | Checks the makeup, headband, and clothing references, then runs case two |
 | "Write a Facebook mature-audience voiceover from this product image." | Runs the GPT full-workflow voiceover prompt |
 | "Analyze this DIY reference video and recreate its production steps." | Runs the DIY reference-video recreation prompt |
 | "Create parent-child DIY scenes, then make a Veo 3.1 video." | Generates three separate Image 2 frames and uses images 1 and 3 as the first and last frames |
@@ -217,6 +239,7 @@ Use $cinematic-giant-visual-prompts to create a realistic Chinese dragon video p
 - A dimensions image or a scale comparison with a hand, person, or common object.
 - Correct usage, assembly order, contact points, and action results.
 - A winning reference video, first frame, character master image, or packaging reference.
+- A short character and outfit description plus the person-product action for the natural model; the beauty-presenter case also needs makeup, headband, and clothing references.
 - Product, dimensions, material-kit, DIY-tool, and picture-instruction references for parent-child DIY.
 - Dialogue, voiceover, and sound requirements that must remain verbatim.
 - Target tool, duration, aspect ratio, scene count, and whether jump cuts are allowed.
@@ -246,6 +269,9 @@ AIvideo/
     │       ├── multi-scene-product-display-prompt.md
     │       ├── factory-old-man-unboxing-prompt.md
     │       ├── parent-child-diy-image-prompt.md
+    │       ├── human-model-prompts/
+    │       │   ├── natural-lifestyle-first-frame-prompt.md
+    │       │   └── beauty-presenter-first-frame-prompt.md
     │       ├── face-mask-preprocessing.md
     │       ├── complex-product-generation-risks.md
     │       ├── veo-grok-multi-scene-prompt.md
@@ -267,6 +293,8 @@ The reference prompts below come directly from the workflow I actually use:
 - [`multi-scene-product-display-prompt.md`](./skills/facebook-diy-video-workflow/references/multi-scene-product-display-prompt.md): three independent multi-scene product images.
 - [`factory-old-man-unboxing-prompt.md`](./skills/facebook-diy-video-workflow/references/factory-old-man-unboxing-prompt.md): factory first-person unboxing.
 - [`parent-child-diy-image-prompt.md`](./skills/facebook-diy-video-workflow/references/parent-child-diy-image-prompt.md): three independent parent-child DIY scene images.
+- [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md): warm, natural, non-influencer human-model first frame.
+- [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md): 9:16 skincare-presenter talking-head first frame.
 - [`veo-grok-multi-scene-prompt.md`](./skills/facebook-diy-video-workflow/references/veo-grok-multi-scene-prompt.md): Veo/Grok continuous multi-angle camera work and multi-scene video.
 - [`seedance-fast-10s-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-fast-10s-prompt.md): Seedance Fast video unit.
 - [`original-prompt.md`](./skills/cinematic-giant-visual-prompts/references/original-prompt.md): cinematic giant image and video prompts.

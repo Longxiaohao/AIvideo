@@ -1,4 +1,4 @@
 interface:
   display_name: "Facebook DIY Video Workflow"
-  short_description: "Route commerce video, face-mask, and fallback workflows"
-  default_prompt: "Use $facebook-diy-video-workflow to screen my product, prepare any face-mask reference, and route the request through the correct original Facebook, Veo, Grok, or Seedance prompt."
+  short_description: "Route human-model, commerce-video, and fallback workflows"
+  default_prompt: "Use $facebook-diy-video-workflow to create and validate a human-model first frame, screen my product, and route the result through the correct original video prompt."
