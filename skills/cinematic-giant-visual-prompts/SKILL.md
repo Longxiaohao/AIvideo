@@ -5,7 +5,7 @@ description: Create physically credible cinematic image and video prompts for gi
 
 # Cinematic Giant Visual Prompts
 
-Apply the author's original prompt as the governing instruction set.
+Apply the bundled original prompt as the governing instruction set.
 
 ## Preserve Prompt Integrity
 

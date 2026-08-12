@@ -1,11 +1,11 @@
 ---
 name: facebook-diy-video-workflow
-description: Create Facebook ecommerce scripts, product images, and AI-video prompts with the author's field-tested prompts. Use for Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, and fragile perspective. Route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; screen complex products before generation. Treat all bundled prompt files as immutable source text.
+description: Create Facebook ecommerce scripts, product images, and AI-video prompts with the field-tested source prompts bundled in this repository. Use for Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, and fragile perspective. Route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; screen complex products before generation. Treat all bundled prompt files as immutable source text.
 ---
 
 # Facebook DIY Video Workflow
 
-Use the author's original prompts without rewriting them.
+Use the bundled original prompts without rewriting them.
 
 ## Preserve Prompt Integrity
 

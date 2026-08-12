@@ -6,7 +6,7 @@ Use this operational module when a Seedance workflow includes a visible person a
 
 - Tool: PromptHub Face Tools
 - URL: https://prompthub.xin/lab/face-tools
-- Access note: the author currently uses an email account to access the free face tool. This is a personal recommendation, not advertising, sponsorship, or a commercial partnership. Availability, login methods, and pricing may change on the external site.
+- Access note: I currently use an email account to access the free face tool. I am sharing it because it works well in my workflow, not as advertising, sponsorship, or a commercial partnership. Availability, login methods, and pricing may change on the external site.
 
 ## Procedure
 

@@ -17,15 +17,15 @@ Write the script and voiceover first, generate images, prepare face-mask referen
 
 ---
 
-## Why This Project Exists
+## Why I Built This Project
 
-The practical challenge in cross-border e-commerce video production is no longer access to AI models. It is finding a reliable way to achieve useful results at a lower cost. Paid tools are not always required: the free Doubao Seedance Fast workflow, together with tools such as Grok and Veo, already covers a large part of script, image, and video generation.
+I built these Skills because, while making cross-border e-commerce videos myself, I kept running into the same practical question: how do I keep the cost down and still get a usable video? In my experience, expensive commercial tools are not always necessary. The free Doubao Seedance Fast workflow, together with Grok and Veo, already covers most of the scripting, image generation, and image-to-video work I need.
 
-These Skills organize mature prompts and routing rules from hands-on production into a reusable SOP. They are designed for creators who need a low-cost pipeline for commerce videos and for job seekers who want practical AI-video production experience and portfolio work.
+I turned the prompts and routing rules that survived my actual projects, revisions, and failed attempts into this reusable SOP. I want it to help both people making low-cost e-commerce videos and job seekers who need real AI-video workflow experience and portfolio pieces.
 
-Once the source materials are ready, the SOP makes it possible to combine tools flexibly and target a relatively complex AI commerce video within one hour. The one-hour figure is a workflow target, not a fixed guarantee for every product, network condition, or generation queue.
+When the product information and references are ready, I use this workflow to switch between tools and aim to put together a fairly complex AI commerce video within one hour. That is my workflow target, not a promise that every product will take exactly one hour. Queue time, product difficulty, and retries still matter.
 
-This repository preserves the author's prompts as they are used in practice. The Skills only identify tasks, validate inputs, and route branches. They do not rewrite, condense, or creatively alter the source prompts.
+The prompts in this repository are the original versions I actually use. The Skills only identify the task, check the inputs, and route the workflow. I do not rewrite or shorten these prompts just to make them look cleaner or more polished.
 
 ## Core Workflow
 
@@ -62,9 +62,9 @@ Fallback changes the execution tool only. It must not alter verified product fac
 
 ## Face-Mask Module
 
-When Seedance uses a real-person reference, preprocess only the face region before video generation, then provide both the original portrait and the processed image downstream. This project recommends [PromptHub Face Tools](https://prompthub.xin/lab/face-tools). The author currently uses an [email account to sign in](https://prompthub.xin/en/auth/login) and access its free face-processing functions.
+When I use a real-person reference in Seedance, I first create a processed version of the face, then provide both the original portrait and the processed image to the video workflow. I currently use [PromptHub Face Tools](https://prompthub.xin/lab/face-tools), sign in with an [email account](https://prompthub.xin/en/auth/login), and use the face-processing features that are free at the moment.
 
-This is a personal recommendation for a tool the author finds useful, not an advertisement, sponsorship, or commercial partnership. The external site's login methods, free tier, and features may change. Confirm that you have permission to upload the portrait and accept the site's privacy terms before sending any media to it.
+I am sharing it simply because I have found it free and convenient to use. This is not an advertisement, sponsorship, or commercial partnership. The site's login methods, free tier, and features may change, so check the current page before using it. Before uploading a portrait, make sure you have permission to use it and accept the site's privacy terms.
 
 ### Tool Entry
 
@@ -72,7 +72,7 @@ Open Prompt Workspace in PromptHub and select Face Tools.
 
 ![PromptHub Face Tools entry](./docs/images/prompthub-face-tools-entry.png)
 
-### Procedure
+### How I Use It
 
 1. Keep the untreated portrait as the primary reference for identity, hair, clothing, and pose.
 2. Upload the portrait and mark only the face region. Do not cover the product, hands, or body action.
@@ -84,26 +84,28 @@ Open Prompt Workspace in PromptHub and select Face Tools.
 
 Face masking prepares a reference image only. It does not modify the product, dialogue, actions, scene, or video prompt.
 
-## Field Experience: AI Limits on Complex Products
+## A Problem I Hit: Complex Products Are Hard to Generate
 
-In real projects, not every product is suitable for a GPT Image 2 image followed by image-to-video. Products with many edges, crossing wires, exact connections, or large numbers of repeated small components often develop perspective, topology, and structural errors.
+I learned this the hard way on real projects: not every product can go straight into GPT Image 2 and then into image-to-video. As soon as a product has lots of edges, crossing wires, exact connections, or many repeated small parts, AI starts getting the perspective and structure wrong.
 
 ![Complex wired product example](./docs/images/complex-wired-product-example.jpg)
 
-The dual-branch wired product above combines cable paths, bends and coils, branch relationships, plugs, outlets, and exact connection points. AI may produce a simple beauty shot, but it often redirects a cable, merges or invents a connection, changes a connector's direction, or creates physically impossible perspective. Similar failures occur with products containing many small clothes clips, hooks, teeth, rings, or repeated fasteners. One incorrect part count or connection can make the entire video unusable.
+Take the two-way wired product above. It is not simply a pair of outlets. The cable path, split, bends, coils, endpoints, plug direction, and outlet direction all have to stay correct. In my tests, AI could make something that looked similar at first glance, but it often rerouted a wire, invented a connection, merged two paths, or produced physically impossible perspective.
 
-### Pre-generation Check
+I ran into the same problem with products that contain many small clothes clips. GPT Image 2 often could not get even the still image right: the number, direction, and attachment points of the clips would drift. Once I used one of those incorrect images for video, the result was usually unusable.
 
-- Record the exact cable path, branch count, endpoints, connector directions, repeated-part count, product scale, and correct use state.
-- Inspect the first generated image at full size. Do not proceed to image-to-video if the structure is wrong.
-- Do not expect camera motion to hide the defect. Video generation usually preserves or amplifies structural errors in the first frame.
+### What I Check Before Generating
 
-### Recommended Fallback
+- I first record the cable path, branch count, endpoints, connector directions, repeated-part count, product scale, and correct use state.
+- I always inspect the first generated image at full size. If the structure is wrong, I do not continue to image-to-video.
+- I do not expect camera motion to hide the mistake. Video generation usually keeps the first-frame defect and often makes it worse once the product moves.
 
-- Use a real product photo, real footage, or a manually corrected composite for critical product shots; ask AI only for restrained camera or environmental motion.
-- Split a complex operation into close-ups, with one connector, wire segment, clip group, or action per shot.
-- AI can generate people, rooms, atmosphere, and packaging; use real sources for shots where topology and usage must remain exact.
-- If no generated image passes the structure check, stop the generative branch and use real footage instead of spending more video-generation credits.
+### How I Handle It Now
+
+- For critical product shots, I use a real product photo, real footage, or a manually corrected composite and ask AI only for restrained camera or environmental motion.
+- I split complex use into close-ups, with one connector, wire segment, clip group, or action in each shot.
+- I am comfortable letting AI generate people, rooms, atmosphere, and packaging. When the exact wiring, structure, or usage matters, I keep the real source.
+- If repeated generations still fail the structure check, I stop that branch and shoot the product instead of spending more video-generation credits.
 
 ## Capabilities
 
@@ -258,7 +260,7 @@ AIvideo/
 
 ## Prompt Integrity
 
-The reference prompts in this repository come from the author's real workflow:
+The reference prompts below come directly from the workflow I actually use:
 
 - [`gpt-full-workflow.md`](./skills/facebook-diy-video-workflow/references/gpt-full-workflow.md): complete Facebook mature-audience voiceover workflow.
 - [`video-breakdown-recreation-prompt.md`](./skills/facebook-diy-video-workflow/references/video-breakdown-recreation-prompt.md): DIY reference-video breakdown and recreation.
@@ -269,7 +271,7 @@ The reference prompts in this repository come from the author's real workflow:
 - [`seedance-fast-10s-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-fast-10s-prompt.md): Seedance Fast video unit.
 - [`original-prompt.md`](./skills/cinematic-giant-visual-prompts/references/original-prompt.md): cinematic giant image and video prompts.
 
-The Skill wrapper may improve triggering and routing, but the reference prompts above remain immutable source text by default.
+I will keep improving the Skill's triggering and routing, but the reference prompts above remain immutable source text by default.
 
 Face masking and complex-product screening are operational modules that do not rewrite the field-tested prompts above:
 
