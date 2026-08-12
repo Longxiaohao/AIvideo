@@ -1,0 +1,4 @@
+interface:
+  display_name: "Facebook DIY Video Workflow"
+  short_description: "Use original prompts for Facebook DIY video scripts"
+  default_prompt: "Use $facebook-diy-video-workflow to run the original Facebook DIY video prompt."

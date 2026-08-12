@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cinematic Giant Visual Prompts"
+  short_description: "Create realistic cinematic giant visual prompts"
+  default_prompt: "Use $cinematic-giant-visual-prompts to create a realistic giant image or video prompt."

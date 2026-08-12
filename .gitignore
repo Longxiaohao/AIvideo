@@ -1,0 +1,30 @@
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Archives and runtime media do not belong in this repository
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Local analysis dependencies and temporary output
+.video_analysis_deps/
+tmp/
+temp/
+work/
+outputs/
+*_视频分析/
+*_video_analysis/
