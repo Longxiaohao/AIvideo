@@ -1,6 +1,6 @@
 ---
 name: facebook-diy-video-workflow
-description: Create Facebook ecommerce scripts, product images, and AI-video prompts with the author's field-tested prompts. Use for Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, multi-scene camera movement, or Seedance Fast prompts. Route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; otherwise route Veo or Grok mentions to the Veo/Grok branch before applying image or script branches. Treat all bundled prompt files as immutable source text.
+description: Create Facebook ecommerce scripts, product images, and AI-video prompts with the author's field-tested prompts. Use for Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, and fragile perspective. Route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; screen complex products before generation. Treat all bundled prompt files as immutable source text.
 ---
 
 # Facebook DIY Video Workflow
@@ -25,6 +25,27 @@ Use the author's original prompts without rewriting them.
 - After generating a spoken script, use [references/multi-scene-product-display-prompt.md](references/multi-scene-product-display-prompt.md) verbatim by default.
 - If the input, script, or requested workflow mentions unboxing or opening the package, skip the default multi-scene branch and use [references/factory-old-man-unboxing-prompt.md](references/factory-old-man-unboxing-prompt.md) verbatim.
 - If the user explicitly requests both workflows, run them separately in the requested order. Do not combine their source text into a third prompt.
+
+## Screen Complex Products
+
+Before any image or video generation, inspect the product for complex wires, cords, branches, endpoints, connectors, repeated clips, dense edges, grids, transparent overlaps, or an exact functional topology.
+
+1. When any high-risk signal is present, read and apply [references/complex-product-generation-risks.md](references/complex-product-generation-risks.md).
+2. Produce the required feasibility note before generation.
+3. Validate the first generated image against the exact structure at full size.
+4. Stop the image-to-video branch if a critical part, path, endpoint, count, connection, or perspective relationship is wrong. Use the reference's fallback strategy instead of attempting to hide the error with motion.
+
+This preflight supplements the selected original prompt without modifying it.
+
+## Prepare Face-Mask References
+
+When the user requests face masking or a Seedance workflow needs a processed portrait reference, read and apply [references/face-mask-preprocessing.md](references/face-mask-preprocessing.md).
+
+1. Run this module after the character image exists and before video generation.
+2. Keep the unmasked image as the identity source and save the mask treatment as a separate reference.
+3. Do not upload user media to PromptHub or another external site without explicit authorization.
+4. Treat PromptHub as an optional external tool. Do not claim sponsorship, guaranteed availability, or permanent free access.
+5. Continue with the immutable Seedance prompt after reference preprocessing is complete.
 
 ## Route Parent-Child DIY
 
@@ -69,11 +90,14 @@ The unboxing branch overrides the multi-scene prohibition on grids only for its 
 
 ## Run the Workflow
 
-1. Check for an explicit Seedance request, then the parent-child DIY route, then the remaining video-prompt, script, or image routes.
-2. Confirm the required product image and reference video are available when the selected prompt depends on them.
-3. Submit the original prompt together with the user's attachments and separately supplied facts.
-4. Follow the output format required by the selected prompt exactly.
-5. Preserve product truth: describe a DIY kit as a DIY kit, not as a finished handmade product.
+1. Screen the product for complex-generation risks and apply the preflight module when needed.
+2. Check for an explicit Seedance request, then the parent-child DIY route, then the remaining video-prompt, script, or image routes.
+3. Confirm the required product image and reference video are available when the selected prompt depends on them.
+4. Generate and validate the required image references before video generation.
+5. Prepare a separate face-mask reference when requested, then continue through the selected video branch.
+6. Submit the original prompt together with the user's attachments and separately supplied facts.
+7. Follow the output format required by the selected prompt exactly.
+8. Preserve product truth: describe a DIY kit as a DIY kit, not as a finished handmade product.
 
 ## Repository Boundaries
 

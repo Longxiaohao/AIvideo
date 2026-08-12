@@ -1,4 +1,4 @@
 interface:
   display_name: "Facebook DIY Video Workflow"
-  short_description: "Route Facebook, parent-child DIY, and video prompts"
-  default_prompt: "Use $facebook-diy-video-workflow to route my product request through the correct original Facebook, parent-child DIY, Veo, Grok, or Seedance prompt."
+  short_description: "Route commerce video, face-mask, and fallback workflows"
+  default_prompt: "Use $facebook-diy-video-workflow to screen my product, prepare any face-mask reference, and route the request through the correct original Facebook, Veo, Grok, or Seedance prompt."

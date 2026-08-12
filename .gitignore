@@ -20,6 +20,11 @@ Thumbs.db
 *.avi
 *.mkv
 
+# Curated documentation examples are intentionally public
+!docs/images/prompthub-face-tools-entry.png
+!docs/images/prompthub-face-mask-example.png
+!docs/images/complex-wired-product-example.jpg
+
 # Local analysis dependencies and temporary output
 .video_analysis_deps/
 tmp/

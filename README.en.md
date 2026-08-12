@@ -4,7 +4,7 @@
 
 **Codex Skills and field-tested prompt SOPs for producing complex AI commerce videos at lower cost.**
 
-Write the script and voiceover first, generate images, turn images into video, process face masks, build a high-retention grid opening, and use Codex or Claude to break down reference videos.
+Write the script and voiceover first, generate images, prepare face-mask references, turn images into video, build a high-retention grid opening, and use Codex or Claude to break down reference videos.
 
 [![GitHub stars](https://img.shields.io/github/stars/Longxiaohao/AIvideo?style=flat-square)](https://github.com/Longxiaohao/AIvideo/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](./LICENSE)
@@ -33,8 +33,8 @@ This repository preserves the author's prompts as they are used in practice. The
 flowchart LR
     A["Codex / Claude<br/>Break down winning videos"] --> B["Script and voiceover"]
     B --> C["Product and scene images"]
-    C --> D["Veo / Grok / Seedance<br/>Image-to-video"]
-    D --> E["Doubao face masking"]
+    C --> D["Face-mask<br/>reference preprocessing"]
+    D --> E["Veo / Grok / Seedance<br/>Image-to-video"]
     E --> F["Grid-style viral opening"]
     F --> G["Editing and final video"]
 ```
@@ -42,8 +42,8 @@ flowchart LR
 1. Use Codex or Claude to break down a successful reference video and extract its opening structure, shots, production actions, and pacing.
 2. Write the script and voiceover from verified product facts, locking the audience, dialogue, scenes, and target duration.
 3. Generate product displays, parent-child DIY scenes, unboxing images, or first and last frames from the product image, dimensions, and script.
-4. Select Veo 3.1, Grok, or the free Doubao Seedance Fast according to budget and task complexity.
-5. Use Doubao face masking to address character consistency or local visual issues.
+4. When a portrait needs masking, keep the original and create a separate processed face reference.
+5. Select Veo 3.1, Grok, or the free Doubao Seedance Fast according to budget and task complexity.
 6. Build a high-retention opening from grid assets, then complete standard editing, sound, and delivery.
 
 ## Tool Fallback Strategy
@@ -55,10 +55,55 @@ The same script and assets can move between tools according to budget, queue tim
 | Winning-video breakdown | Codex / Claude | Any Agent that can inspect video and images | Extracts shots, actions, pacing, and reusable structure |
 | Complex multi-scene video | Veo 3.1 | Grok | Defines jump-cut timing, multi-angle camera paths, and continuity locks |
 | Fast image-to-video | Grok / Veo | Doubao Seedance Fast | Compresses the plan into a physically executable short-video unit |
-| Human-shot correction | Doubao face masking | Regenerate from the first frame or character reference | Preserves character, product, and dialogue anchors |
+| Face-reference preprocessing | PromptHub Face Tools | Keep the original and create a separate mask reference | Preserves character, product, and dialogue anchors |
 | High-retention opening | Independent grid assets | Reorder existing shots | Breaks down the opening structure and organizes shot order |
 
 Fallback changes the execution tool only. It must not alter verified product facts, exact dialogue, scale, assembly steps, or any original prompt.
+
+## Face-Mask Module
+
+When Seedance uses a real-person reference, preprocess only the face region before video generation, then provide both the original portrait and the processed image downstream. This project recommends [PromptHub Face Tools](https://prompthub.xin/lab/face-tools). The author currently uses an [email account to sign in](https://prompthub.xin/en/auth/login) and access its free face-processing functions.
+
+This is a personal recommendation for a tool the author finds useful, not an advertisement, sponsorship, or commercial partnership. The external site's login methods, free tier, and features may change. Confirm that you have permission to upload the portrait and accept the site's privacy terms before sending any media to it.
+
+### Tool Entry
+
+Open Prompt Workspace in PromptHub and select Face Tools.
+
+![PromptHub Face Tools entry](./docs/images/prompthub-face-tools-entry.png)
+
+### Procedure
+
+1. Keep the untreated portrait as the primary reference for identity, hair, clothing, and pose.
+2. Upload the portrait and mark only the face region. Do not cover the product, hands, or body action.
+3. Choose Black Fishnet, Scribble Mask, Fog Mosaic, Face Separation, Puzzle Pieces, or the treatment required by the task.
+4. Download the result as a separate file and never overwrite the original portrait.
+5. Provide both the original portrait and the processed face reference to Seedance, then continue with the immutable Seedance prompt.
+
+![PromptHub black-fishnet face-mask example](./docs/images/prompthub-face-mask-example.png)
+
+Face masking prepares a reference image only. It does not modify the product, dialogue, actions, scene, or video prompt.
+
+## Field Experience: AI Limits on Complex Products
+
+In real projects, not every product is suitable for a GPT Image 2 image followed by image-to-video. Products with many edges, crossing wires, exact connections, or large numbers of repeated small components often develop perspective, topology, and structural errors.
+
+![Complex wired product example](./docs/images/complex-wired-product-example.jpg)
+
+The dual-branch wired product above combines cable paths, bends and coils, branch relationships, plugs, outlets, and exact connection points. AI may produce a simple beauty shot, but it often redirects a cable, merges or invents a connection, changes a connector's direction, or creates physically impossible perspective. Similar failures occur with products containing many small clothes clips, hooks, teeth, rings, or repeated fasteners. One incorrect part count or connection can make the entire video unusable.
+
+### Pre-generation Check
+
+- Record the exact cable path, branch count, endpoints, connector directions, repeated-part count, product scale, and correct use state.
+- Inspect the first generated image at full size. Do not proceed to image-to-video if the structure is wrong.
+- Do not expect camera motion to hide the defect. Video generation usually preserves or amplifies structural errors in the first frame.
+
+### Recommended Fallback
+
+- Use a real product photo, real footage, or a manually corrected composite for critical product shots; ask AI only for restrained camera or environmental motion.
+- Split a complex operation into close-ups, with one connector, wire segment, clip group, or action per shot.
+- AI can generate people, rooms, atmosphere, and packaging; use real sources for shots where topology and usage must remain exact.
+- If no generated image passes the structure check, stop the generative branch and use real footage instead of spending more video-generation credits.
 
 ## Capabilities
 
@@ -69,6 +114,8 @@ Fallback changes the execution tool only. It must not alter verified product fac
 - **First-person unboxing**: route unboxing intent to the factory-old-man first-person branch.
 - **Veo / Grok video prompts**: handle talking people, product demonstrations, product-only scenes, continuous takes, and explicit multi-scene jump cuts.
 - **Seedance Fast prompts**: generate compact, continuous, physically executable video units from the product's real usage method.
+- **Face-mask preprocessing**: create a separate face-mask reference before Seedance while keeping the original portrait as the identity anchor.
+- **Complex-product risk screening**: identify wire, connector, clip, and repeated-part risks before image generation, then choose generation, shot splitting, or a real-footage fallback.
 - **Cinematic giant visuals**: create image or video prompts for Chinese dragons, deities, giants, mysterious beings, and disaster-scale scenes.
 
 ## Who It Is For
@@ -85,6 +132,8 @@ Fallback changes the execution tool only. It must not alter verified product fac
 | User mentions | Automatic action |
 | --- | --- |
 | `Seedance` | Prioritize the Seedance Fast branch |
+| Face masking, Black Fishnet, Scribble Mask, or Face Separation | Create a separate processed face reference, then continue to the Seedance video branch |
+| Complex wires, many connectors, clips, or repeated parts | Run complex-product screening first and switch to real footage or split shots when structure validation fails |
 | Parent-child DIY, mother-daughter DIY, family crafting | Generate three independent GPT Image 2 images, then enter the Veo/Grok first-and-last-frame branch |
 | `Veo`, `Veo 3/3.1`, or `Grok` | Enter the Veo/Grok multi-scene and continuous multi-angle camera branch |
 | Unboxing, opening the box, or opening the package | Enter the factory-old-man first-person unboxing branch |
@@ -146,6 +195,8 @@ Use natural language after installation. You do not need to select reference fil
 | "Turn this script into a Veo 3.1 multi-scene prompt." | Outputs mode selection, lock card, camera path, timeline, and final Veo prompt |
 | "Write a Grok multi-angle product-video prompt." | Applies the Veo/Grok continuous multi-angle camera rules |
 | "Write a 10-second Seedance prompt from the real usage method." | Prioritizes the Seedance Fast branch |
+| "Mask this portrait before making the Seedance video." | Keeps the original portrait, creates a separate processed reference, then enters the Seedance branch |
+| "This product has complex wires and connectors. Check whether AI can generate it." | Checks topology, perspective, and repeated-part risks, then recommends generation, split shots, or real footage |
 | "Create a video prompt for a Chinese dragon over a stormy city." | Uses the cinematic giant-visual Skill |
 
 Explicit invocation is also supported:
@@ -177,6 +228,11 @@ AIvideo/
 ├── README.md
 ├── README.en.md
 ├── LICENSE
+├── docs/
+│   └── images/
+│       ├── prompthub-face-tools-entry.png
+│       ├── prompthub-face-mask-example.png
+│       └── complex-wired-product-example.jpg
 └── skills/
     ├── facebook-diy-video-workflow/
     │   ├── SKILL.md
@@ -188,6 +244,8 @@ AIvideo/
     │       ├── multi-scene-product-display-prompt.md
     │       ├── factory-old-man-unboxing-prompt.md
     │       ├── parent-child-diy-image-prompt.md
+    │       ├── face-mask-preprocessing.md
+    │       ├── complex-product-generation-risks.md
     │       ├── veo-grok-multi-scene-prompt.md
     │       └── seedance-fast-10s-prompt.md
     └── cinematic-giant-visual-prompts/
@@ -213,9 +271,14 @@ The reference prompts in this repository come from the author's real workflow:
 
 The Skill wrapper may improve triggering and routing, but the reference prompts above remain immutable source text by default.
 
+Face masking and complex-product screening are operational modules that do not rewrite the field-tested prompts above:
+
+- [`face-mask-preprocessing.md`](./skills/facebook-diy-video-workflow/references/face-mask-preprocessing.md): face-reference preprocessing workflow.
+- [`complex-product-generation-risks.md`](./skills/facebook-diy-video-workflow/references/complex-product-generation-risks.md): complex-product feasibility checks and fallback rules.
+
 ## Repository Boundaries
 
-The repository contains only the instructions and prompts required by the Skills. Product images, reference videos, generated media, analysis caches, and archives stay outside GitHub and are supplied as runtime attachments.
+The repository contains the instructions and prompts required by the Skills plus documentation images explicitly authorized for public use. Other product images, reference videos, generated media, analysis caches, and archives stay outside GitHub and are supplied as runtime attachments.
 
 ## Contributing
 
