@@ -6,7 +6,7 @@
 
 ### Facebook DIY Video Workflow
 
-从产品图生成 Facebook 熟龄口播脚本，或分析 DIY 参考视频并生成 15 秒拆解复刻脚本。
+从产品图生成 Facebook 熟龄口播脚本，或分析 DIY 参考视频并生成 15 秒拆解复刻脚本。口播完成后默认生成三张独立的多场景产品展示图；工作流提到开箱时，自动切换为工厂老头第一人称开箱分支。
 
 路径：`skills/facebook-diy-video-workflow`
 
@@ -28,6 +28,8 @@
 
 - `gpt-full-workflow.md` 直接复制自作者指定的 `流程1-Facebook熟龄口播脚本(改进版).md`。
 - `video-breakdown-recreation-prompt.md` 按作者提供的原始文本收录。
+- `multi-scene-product-display-prompt.md` 按作者提供的多场景展示原始文本收录。
+- `factory-old-man-unboxing-prompt.md` 按作者提供的开箱分支原始文本收录。
 - `original-prompt.md` 直接复制自原有的电影感巨物 Prompt。
 - Skill 只负责触发、路由和输入要求，不改写上述实践 Prompt。
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Facebook DIY Video Workflow"
-  short_description: "Use original prompts for Facebook DIY video scripts"
-  default_prompt: "Use $facebook-diy-video-workflow to run the original Facebook DIY video prompt."
+  short_description: "Create Facebook scripts and routed product images"
+  default_prompt: "Use $facebook-diy-video-workflow to create the script, then route to multi-scene or unboxing product images."
