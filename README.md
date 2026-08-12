@@ -1,21 +1,64 @@
 <div align="center">
 
-# 跨境电商AI带货视频制作
+# 跨境电商 AI 带货视频制作
 
-**面向电商短视频创作的 Codex Skills 与实战 Prompt 工作流。**
+**一套面向低成本、复杂 AI 带货视频制作的 Codex Skills 与实战 Prompt SOP。**
 
-从 Facebook 熟龄口播、DIY 视频拆解、亲子 DIY、多场景产品展示和第一人称开箱，到 Veo 3/3.1、Grok、Seedance Fast 视频提示词，以及电影感巨物视觉提示词，按用户意图自动路由到对应工作流。
+先写脚本与口播，再出图、图生视频、处理人脸遮罩、制作爆款开头，并通过 Codex 或 Claude 拆解参考视频。
 
-本仓库保留作者实际使用的原始 Prompt。Skill 只负责任务识别、输入检查和分支调度，不对实践 Prompt 做二创、压缩或改写。
+[![GitHub stars](https://img.shields.io/github/stars/Longxiaohao/AIvideo?style=flat-square)](https://github.com/Longxiaohao/AIvideo/stargazers)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](./LICENSE)
+[![Codex Skills](https://img.shields.io/badge/Codex-Skills-black.svg?style=flat-square)](./skills)
+[![Video Tools](https://img.shields.io/badge/video-Veo%20%7C%20Grok%20%7C%20Seedance-orange.svg?style=flat-square)](#自动路由)
 
-[![GitHub stars](https://img.shields.io/github/stars/Longxiaohao/AIvideo?style=flat)](https://github.com/Longxiaohao/AIvideo/stargazers)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Codex Skills](https://img.shields.io/badge/Codex-Skills-black.svg)](./skills)
-[![Video Tools](https://img.shields.io/badge/video-Veo%20%7C%20Grok%20%7C%20Seedance-orange.svg)](#自动路由)
+**中文** | [English](./README.en.md)
 
 </div>
 
 ---
+
+## 为什么做这个项目
+
+现在制作跨境电商带货视频，最大的现实问题不是缺少模型，而是如何用更低的成本稳定做出可用效果。商业工具并不总是必要条件：免费的豆包 Seedance Fast，以及 Grok、Veo 等现有工具，已经足以覆盖脚本、画面和视频生成中的大量工作。
+
+这套 Skills 把实际操作中成熟的 Prompt 和路由规则整理成一套可复用 SOP。它主要服务两类人：需要低成本批量制作跨境电商视频的创作者，以及仍在寻找 AI 视频制作岗位、希望快速建立作品和工作流经验的求职者。
+
+完成素材准备后，这套 SOP 可以灵活组合不同工具，并在 1 小时内完成一条结构较复杂的 AI 带货视频。这里的“1 小时”是工作流目标，不是对所有产品、网络环境和生成队列的固定承诺。
+
+本仓库保留作者实际使用的原始 Prompt。Skill 只负责任务识别、输入检查和分支调度，不对实践 Prompt 做二创、压缩或改写。
+
+## 核心工作流
+
+```mermaid
+flowchart LR
+    A["Codex / Claude<br/>拆解爆款视频"] --> B["脚本与口播"]
+    B --> C["产品图与场景图"]
+    C --> D["Veo / Grok / Seedance<br/>图生视频"]
+    D --> E["豆包人脸遮罩"]
+    E --> F["宫格爆款开头"]
+    F --> G["剪辑与成片"]
+```
+
+1. 使用 Codex 或 Claude 拆解爆款参考视频，提取开头结构、镜头、制作动作和节奏。
+2. 根据产品事实先写脚本和口播，锁定受众、台词、场景和视频时长。
+3. 根据产品图、尺寸图和脚本生成产品展示图、亲子 DIY 图、开箱图或视频首尾帧。
+4. 根据预算和任务难度选择 Veo 3.1、Grok 或免费的豆包 Seedance Fast 进行图生视频。
+5. 使用豆包人脸遮罩处理人物一致性或局部画面问题。
+6. 使用宫格素材制作爆款开头，再进入常规剪辑、声音和成片流程。
+
+## 工具降级策略
+
+同一套脚本与素材可以根据预算、排队时间和生成效果切换工具，而不必推翻整个流程。
+
+| 任务 | 优先工具 | 低成本或降级方案 | Skill 负责什么 |
+| --- | --- | --- | --- |
+| 爆款视频拆解 | Codex / Claude | 任选可读取视频和图片的 Agent | 提取镜头、动作、节奏与可复刻结构 |
+| 复杂多场景视频 | Veo 3.1 | Grok | 输出跳切时间、多角度运镜和一致性锁定 |
+| 快速图生视频 | Grok / Veo | 豆包 Seedance Fast | 压缩成物理可执行的短视频单元 |
+| 真人画面修正 | 豆包人脸遮罩 | 回到首帧或人物母图重新生成 | 保留人物、产品与台词锚点 |
+| 爆款开头 | 独立宫格素材 | 从现有画面重新编排 | 拆解开头结构并组织镜头顺序 |
+
+工具降级只改变执行工具，不改变产品事实、口播台词、尺寸关系、制作步骤和原始 Prompt。
 
 ## 能做什么
 
@@ -28,18 +71,12 @@
 - **Seedance Fast Prompt**：根据产品真实使用方法生成紧凑、连续、物理可执行的视频单元提示词。
 - **电影感巨物视觉**：生成中国龙、神明、巨物、神秘存在和灾难尺度场景的图像或视频提示词。
 
-## 适合哪些场景
+## 适合哪些人
 
-| 场景 | 对应能力 | 关键输入 |
-| --- | --- | --- |
-| Facebook 商品口播 | 熟龄口播脚本 | 产品成品图、产品事实、目标时长 |
-| DIY 套件短视频 | 参考视频拆解复刻 | 产品图、参考视频、真实制作方法 |
-| 亲子 DIY 图片转视频 | Image 2 三图与 Veo/Grok 首尾帧流程 | 产品图、尺寸图、材料包、图片说明书 |
-| 口播后的产品陈列 | 3 张独立多场景展示图 | 产品图、尺寸对照图 |
-| 工厂开箱画面 | 第一人称开箱分支 | 图一产品与尺寸、图二至图四动作参考 |
-| Veo 3 / 3.1 或 Grok 视频 | 连续多角度运镜或多场景跳切 | 首帧、产品图、尺寸图、台词、动作、时长 |
-| Seedance Fast 视频 | 真实手机感动作单元 | 产品图、正确使用方法、时长、画幅 |
-| 巨物、神明、中国龙画面 | 电影感图像或视频 Prompt | 主体、现实场景、画幅、运动要求 |
+- 正在制作 TikTok、Facebook 或其他跨境电商带货视频的个人与团队。
+- 希望通过免费或低成本工具建立稳定 AI 视频生产流程的创作者。
+- 正在寻找 AI 视频制作、AIGC 内容或跨境电商素材岗位的求职者。
+- 需要在短时间内完成作品集、测试片或复杂视频样片的人。
 
 ## 自动路由
 
@@ -59,7 +96,7 @@
 
 ## 安装
 
-### 方式一：让 AI 助手安装（推荐）
+### 让 AI 助手安装（推荐）
 
 把下面这段话发给 Codex：
 
@@ -69,7 +106,7 @@
 >
 > 安装 `facebook-diy-video-workflow` 和 `cinematic-giant-visual-prompts`，完成后校验 Skill 并告诉我是否需要刷新会话。
 
-### 方式二：手动安装
+### 手动安装
 
 先克隆仓库：
 
@@ -126,11 +163,10 @@ Use $cinematic-giant-visual-prompts to create a realistic Chinese dragon video p
 - 产品成品图、正侧面图和细节图。
 - 产品尺寸图或与手掌、人物、常见物体的尺寸对照图。
 - 正确使用方法、安装顺序、接触点和动作结果。
-- 视频首帧、人物母图或包装参考图。
+- 爆款参考视频、视频首帧、人物母图或包装参考图。
 - 亲子 DIY 所需的产品图、尺寸图、材料包、DIY 工具和图片说明书参考图。
 - 必须逐字保留的口播、旁白和声音要求。
 - 目标工具、时长、画幅、场景数量和是否允许跳切。
-- DIY 任务中的参考视频和经过确认的真实制作步骤。
 
 缺少会改变产品尺寸、制作方法或关键动作的信息时，Skill 会先询问，不会自行补造。
 
@@ -139,6 +175,7 @@ Use $cinematic-giant-visual-prompts to create a realistic Chinese dragon video p
 ```text
 AIvideo/
 ├── README.md
+├── README.en.md
 ├── LICENSE
 └── skills/
     ├── facebook-diy-video-workflow/
@@ -182,12 +219,7 @@ Skill 外壳可以继续完善触发和路由，但上述参考 Prompt 默认视
 
 ## 贡献
 
-欢迎通过 [Issues](https://github.com/Longxiaohao/AIvideo/issues) 提交：
-
-- 新的视频工具触发分支。
-- 产品一致性、运镜和多场景生成中的真实失败案例。
-- 不修改原始 Prompt 前提下的路由改进建议。
-- Skill 安装、识别和跨平台兼容问题。
+欢迎通过 [Issues](https://github.com/Longxiaohao/AIvideo/issues) 提交新的视频工具触发分支、真实失败案例、路由改进建议，以及 Skill 安装和兼容问题。
 
 ## License
 
