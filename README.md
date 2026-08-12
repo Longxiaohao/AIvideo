@@ -1,6 +1,6 @@
 <div align="center">
 
-# AIvideo
+# 跨境电商AI带货视频制作
 
 **面向电商短视频创作的 Codex Skills 与实战 Prompt 工作流。**
 
