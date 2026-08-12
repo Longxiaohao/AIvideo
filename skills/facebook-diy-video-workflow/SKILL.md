@@ -1,6 +1,6 @@
 ---
 name: facebook-diy-video-workflow
-description: Create Facebook short-video materials for North American mature audiences with the author's field-tested prompts. Use when the user asks for a Facebook spoken sales script, DIY reference-video recreation, post-script multi-scene product images, or first-person factory unboxing images. Route any workflow that mentions unboxing to the unboxing branch; otherwise generate multi-scene product displays after the spoken script. Treat all bundled prompt files as immutable source text.
+description: Create Facebook ecommerce scripts, product images, and AI-video prompts with the author's field-tested prompts. Use for Facebook spoken scripts, DIY reference-video recreation, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, multi-scene camera movement, or Seedance Fast prompts. Route Seedance mentions to the Seedance branch; otherwise route Veo or Grok mentions to the Veo/Grok branch before applying image or script branches. Treat all bundled prompt files as immutable source text.
 ---
 
 # Facebook DIY Video Workflow
@@ -17,11 +17,24 @@ Use the author's original prompts without rewriting them.
 
 ## Select a Prompt
 
+- For any Seedance request, read and use [references/seedance-fast-10s-prompt.md](references/seedance-fast-10s-prompt.md) verbatim.
+- For Veo, Veo 3, Veo 3.1, Grok, Grok prompt, multi-scene video switching, or continuous multi-angle camera movement, read and use [references/veo-grok-multi-scene-prompt.md](references/veo-grok-multi-scene-prompt.md) verbatim.
 - For a Facebook mature-audience spoken sales script or the user's "GPT full workflow," read and use [references/gpt-full-workflow.md](references/gpt-full-workflow.md) verbatim.
 - For DIY reference-video analysis, production-step extraction, and a 15-second AI-video recreation script, read and use [references/video-breakdown-recreation-prompt.md](references/video-breakdown-recreation-prompt.md) verbatim.
 - After generating a spoken script, use [references/multi-scene-product-display-prompt.md](references/multi-scene-product-display-prompt.md) verbatim by default.
 - If the input, script, or requested workflow mentions unboxing or opening the package, skip the default multi-scene branch and use [references/factory-old-man-unboxing-prompt.md](references/factory-old-man-unboxing-prompt.md) verbatim.
 - If the user explicitly requests both workflows, run them separately in the requested order. Do not combine their source text into a third prompt.
+
+## Route Video Prompt Requests
+
+Apply this routing before the script and post-script image routes:
+
+1. Match tool names case-insensitively and recognize equivalent wording in any language.
+2. If the request mentions Seedance, select only the original Seedance Fast prompt. Require the real product usage method, product reference, size evidence when scale matters, requested duration, aspect ratio, and any dialogue before execution. Do not reuse the example product facts as facts about the user's product.
+3. Otherwise, if the request mentions Veo, Veo 3, Veo 3.1, Grok, a Grok prompt, multi-scene video switching, or continuous multi-angle camera movement, select only the original Veo/Grok prompt.
+4. When the Veo/Grok route is selected, preserve the prompt's A-E mode routing. Use mode E only for true scene changes with explicit timed jump cuts; keep multiple angles within one scene as continuous physical camera movement.
+5. A selected video-prompt branch overrides the default post-script three-image branch unless the user explicitly requests the images as an additional deliverable.
+6. If both Seedance and Veo/Grok are explicitly requested, produce separate outputs for each tool in the user's requested order. Never merge their source prompts.
 
 ## Route Post-Script Images
 
@@ -37,7 +50,7 @@ The unboxing branch overrides the multi-scene prohibition on grids only for its 
 
 ## Run the Workflow
 
-1. Identify which prompt matches the request and apply the post-script image route when a spoken script is generated.
+1. Apply the video-prompt route first, then identify the remaining script or image route.
 2. Confirm the required product image and reference video are available when the selected prompt depends on them.
 3. Submit the original prompt together with the user's attachments and separately supplied facts.
 4. Follow the output format required by the selected prompt exactly.
