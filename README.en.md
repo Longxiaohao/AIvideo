@@ -112,18 +112,21 @@ Take the two-way wired product above. It is not simply a pair of outlets. The ca
 
 I ran into the same problem with products that contain many small clothes clips. GPT Image 2 often could not get even the still image right: the number, direction, and attachment points of the clips would drift. Once I used one of those incorrect images for video, the result was usually unusable.
 
-### What I Check Before Generating
+### I First Decide Whether the Shot Is Worth Generating
 
-- I first record the cable path, branch count, endpoints, connector directions, repeated-part count, product scale, and correct use state.
-- I always inspect the first generated image at full size. If the structure is wrong, I do not continue to image-to-video.
-- I do not expect camera motion to hide the mistake. Video generation usually keeps the first-frame defect and often makes it worse once the product moves.
+My rule is straightforward: when a shot requires AI to preserve complex wiring, several exact connectors, many repeated parts, a complete disassembly sequence, or a strict installation order, I normally recommend not generating that shot. It may be possible after enough attempts, but the retries and cost are usually not worth it.
 
-### How I Handle It Now
+On a company project, I explain the structural risk and likely reroll cost first, then discuss a shot change with my manager or project lead. I can replace the complex disassembly with a finished-result shot, a presenter holding the product, a detail view, packaging, voice-over explanation, or real product footage. I keep the communication goal of the shot without forcing AI to perform the full complex process.
 
-- For critical product shots, I use a real product photo, real footage, or a manually corrected composite and ask AI only for restrained camera or environmental motion.
-- I split complex use into close-ups, with one connector, wire segment, clip group, or action in each shot.
-- I am comfortable letting AI generate people, rooms, atmosphere, and packaging. When the exact wiring, structure, or usage matters, I keep the real source.
-- If repeated generations still fail the structure check, I stop that branch and shoot the product instead of spending more video-generation credits.
+A completed storyboard or image grid does not prove that the video will work. A still image only has to look plausible for one frame. Image-to-video has to preserve cable paths, part counts, connector positions, hand contact, and spatial perspective over time. In my experience, this leads to frustrating repeated rerolls: the first frame can look correct, but the product may deform, disconnect, gain or lose parts, or change topology as soon as it moves.
+
+### If the Shot Is Mandatory, I Convert It First
+
+- I do not ask AI to complete a long disassembly, assembly, threading sequence, or several structural changes in one shot. I first convert it into a verified finished state with voice-over, removing the complex process from the visible action.
+- When an operation must be shown, I reduce it to one local area, one connector, or one simple action. Critical structure and real usage relationships stay in real close-up footage, real product images, or manually corrected material.
+- AI can handle the person, room, atmosphere, packaging, and ordinary presentation. I keep the product mostly static and use only restrained camera or environmental motion instead of combining complex hand action, product motion, and aggressive camera movement.
+- If the company still requires generation, I explain the failure rate and rework cost in advance. An approved storyboard or image grid does not mean the video will be usable, so the schedule and budget need room for repeated rerolls.
+- If structural drift continues after repeated attempts, I stop the generative branch and switch to real footage, a subtle push on a still image, or an editorial transition instead of spending more video credits.
 
 ## Capabilities
 
@@ -136,7 +139,7 @@ I ran into the same problem with products that contain many small clothes clips.
 - **Veo / Grok video prompts**: handle talking people, product demonstrations, product-only scenes, continuous takes, and explicit multi-scene jump cuts.
 - **Seedance Fast prompts**: generate compact, continuous, physically executable video units from the product's real usage method.
 - **Face-mask preprocessing**: create a separate face-mask reference before Seedance while keeping the original portrait as the identity anchor.
-- **Complex-product risk screening**: identify wire, connector, clip, and repeated-part risks before image generation, then choose generation, shot splitting, or a real-footage fallback.
+- **Complex-product risk screening**: identify wire, connector, repeated-part, and disassembly risks before generation, recommend avoiding the complex generated shot by default, and provide a company-discussion, shot-conversion, or real-footage path.
 - **Cinematic giant visuals**: create image or video prompts for Chinese dragons, deities, giants, mysterious beings, and disaster-scale scenes.
 
 ## Who It Is For
@@ -155,7 +158,7 @@ I ran into the same problem with products that contain many small clothes clips.
 | Human-model module, real-person first frame, or talking-head character master | Select one original human-model prompt, generate and validate it with GPT Image 2, then continue to video |
 | `Seedance` | Prioritize the Seedance Fast branch |
 | Face masking, Black Fishnet, Scribble Mask, or Face Separation | Create a separate processed face reference, then continue to the Seedance video branch |
-| Complex wires, many connectors, clips, or repeated parts | Run complex-product screening first and switch to real footage or split shots when structure validation fails |
+| Complex wires, many connectors, repeated parts, disassembly, or installation | Recommend avoiding the complex generated shot by default; on company work, discuss a shot change first, then use a finished result, real close-up, or simple action if it remains mandatory |
 | Parent-child DIY, mother-daughter DIY, family crafting | Generate three independent GPT Image 2 images, then enter the Veo/Grok first-and-last-frame branch |
 | `Veo`, `Veo 3/3.1`, or `Grok` | Enter the Veo/Grok multi-scene and continuous multi-angle camera branch |
 | Unboxing, opening the box, or opening the package | Enter the factory-old-man first-person unboxing branch |

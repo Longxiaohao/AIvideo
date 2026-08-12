@@ -1,6 +1,6 @@
 ---
 name: facebook-diy-video-workflow
-description: Create Facebook ecommerce scripts, human-model first frames, product images, and AI-video prompts with the field-tested source prompts bundled in this repository. Use for real-person or talking-head first-frame prompts, GPT Image 2 character images, Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, and fragile perspective. Route explicit human-model requests through the first-frame image module before image-to-video; route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; screen complex products before generation. Treat all bundled prompt files as immutable source text.
+description: Create Facebook ecommerce scripts, human-model first frames, product images, and AI-video prompts with the field-tested source prompts bundled in this repository. Use for real-person or talking-head first-frame prompts, GPT Image 2 character images, Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, fragile perspective, disassembly, or installation sequences. Route explicit human-model requests through the first-frame image module before image-to-video; route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; recommend converting complex structure and disassembly shots before generation. Treat all bundled prompt files as immutable source text.
 ---
 
 # Facebook DIY Video Workflow
@@ -33,9 +33,11 @@ Use the bundled original prompts without rewriting them.
 Before any image or video generation, inspect the product for complex wires, cords, branches, endpoints, connectors, repeated clips, dense edges, grids, transparent overlaps, or an exact functional topology.
 
 1. When any high-risk signal is present, read and apply [references/complex-product-generation-risks.md](references/complex-product-generation-risks.md).
-2. Produce the required feasibility note before generation.
-3. Validate the first generated image against the exact structure at full size.
-4. Stop the image-to-video branch if a critical part, path, endpoint, count, connection, or perspective relationship is wrong. Use the reference's fallback strategy instead of attempting to hide the error with motion.
+2. Recommend avoiding topology-critical generation, full disassembly, full assembly, or exact routing shots by default. For company work, include a concise recommendation to discuss a shot conversion with the manager or project lead before spending generation credits.
+3. Do not treat a successful storyboard image or grid as proof that image-to-video is feasible. State that temporal consistency can still require many rerolls even when every still looks correct.
+4. Produce the required feasibility note before generation. Preserve the communication purpose of the shot while proposing a finished-result view, presenter shot, voice-over, real close-up, or another simpler visual.
+5. Continue only when the user still requires generation. Validate the first generated image against the exact structure at full size, then restrict each generated shot to one local area, one connector, or one simple action.
+6. Stop the image-to-video branch if a critical part, path, endpoint, count, connection, or perspective relationship is wrong or drifts during motion. Use the reference's real-footage, static-image, or editing fallback instead of attempting to hide the error with more camera movement.
 
 This preflight supplements the selected original prompt without modifying it.
 
