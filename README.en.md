@@ -315,6 +315,10 @@ The repository contains the instructions and prompts required by the Skills plus
 
 [Issues](https://github.com/Longxiaohao/AIvideo/issues) are welcome for new tool routes, real failure cases, routing improvements, installation issues, and compatibility reports.
 
+## Community
+
+Thanks to [LINUX DO](https://linux.do/) for fostering a sincere, friendly, collaborative, and professional technical community.
+
 ## License
 
 MIT. See [LICENSE](./LICENSE).

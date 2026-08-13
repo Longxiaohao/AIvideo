@@ -315,6 +315,10 @@ AIvideo/
 
 欢迎通过 [Issues](https://github.com/Longxiaohao/AIvideo/issues) 提交新的视频工具触发分支、真实失败案例、路由改进建议，以及 Skill 安装和兼容问题。
 
+## 社区
+
+感谢 [LINUX DO](https://linux.do/) 提供真诚、友善、团结、专业的技术交流环境。
+
 ## License
 
 MIT，详见 [LICENSE](./LICENSE)。
