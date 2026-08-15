@@ -104,7 +104,9 @@ Face masking prepares a reference image only. It does not modify the product, di
 
 I learned this the hard way on real projects: not every product can go straight into GPT Image 2 and then into image-to-video. As soon as a product has lots of edges, crossing wires, exact connections, or many repeated small parts, AI starts getting the perspective and structure wrong.
 
-![Complex wired product example](./docs/images/complex-wired-product-example.jpg)
+<p align="center">
+  <img src="./docs/images/complex-wired-product-example.jpg" alt="Complex wired product example" width="420">
+</p>
 
 Take the two-way wired product above. It is not simply a pair of outlets. The cable path, split, bends, coils, endpoints, plug direction, and outlet direction all have to stay correct. In my tests, AI could make something that looked similar at first glance, but it often rerouted a wire, invented a connection, merged two paths, or produced physically impossible perspective.
 
