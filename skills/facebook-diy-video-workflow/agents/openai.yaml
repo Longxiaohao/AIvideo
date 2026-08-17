@@ -1,4 +1,4 @@
 interface:
   display_name: "Facebook DIY Video Workflow"
-  short_description: "Route human-model, commerce-video, and fallback workflows"
-  default_prompt: "Use $facebook-diy-video-workflow to create and validate a human-model first frame, screen my product, and route the result through the correct original video prompt."
+  short_description: "Route commerce video, detailed bead craft, and fallback workflows"
+  default_prompt: "Use $facebook-diy-video-workflow to validate my image references, screen the product, and route the request through the correct immutable video prompt, including the detailed bead-craft Seedance branch when applicable."

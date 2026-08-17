@@ -128,6 +128,14 @@ A completed storyboard or image grid does not prove that the video will work. A 
 - If the company still requires generation, I explain the failure rate and rework cost in advance. An approved storyboard or image grid does not mean the video will be usable, so the schedule and budget need room for repeated rerolls.
 - If structural drift continues after repeated attempts, I stop the generative branch and switch to real footage, a subtle push on a still image, or an editorial transition instead of spending more video credits.
 
+## Detailed Dot-Drill and Fuse-Bead Shots: Make the Image Precise First
+
+Diamond painting, pearl painting, dot-drill work, and fuse beads also contain many repeated small parts, but I do not automatically reject every such shot. A tightly framed shot with one simple local action can still be attempted, provided that the image supplied to Seedance is already highly detailed.
+
+I inspect the first frame at full size before video generation. Finished positions must not reveal their labels again, unfinished targets must be few and clearly readable, and every pearl, diamond, or fuse bead must have the correct shape, color, size, and arrangement. The relationship among the tool, one individual piece, the numbered circle or pegboard, and the contact point must be physically believable. I do not continue when the image is soft, the pieces are deformed, the targets are wrong, or the finished and unfinished areas are visually confused.
+
+During video generation, I keep the shot on one verified macro area and place only one piece at a time. After each placement, the tool moves to a new empty target without repeating or stacking pieces, and completed positions never revert to labels or empty spaces. The bundled Virgin Mary pearl-painting Shot 07 is a field-tested high-precision Seedance example and remains unchanged. For another design or fuse-bead product, the runtime result must come from new detail images and the real production steps; it must not inherit the example's Virgin Mary artwork, labels `1` and `2`, white pearls, pink pen, or 95% completion unless the new references prove those facts.
+
 ## Capabilities
 
 - **Facebook mature-audience voiceovers**: generate natural spoken scripts for North American audiences aged 35–45 from product references.
@@ -138,6 +146,7 @@ A completed storyboard or image grid does not prove that the video will work. A 
 - **First-person unboxing**: route unboxing intent to the factory-old-man first-person branch.
 - **Veo / Grok video prompts**: handle talking people, product demonstrations, product-only scenes, continuous takes, and explicit multi-scene jump cuts.
 - **Seedance Fast prompts**: generate compact, continuous, physically executable video units from the product's real usage method.
+- **Detailed Seedance dot-drill and fuse-bead shots**: validate a full-size macro first frame before generating one-piece-at-a-time pearl, diamond, or fuse-bead placement actions.
 - **Face-mask preprocessing**: create a separate face-mask reference before Seedance while keeping the original portrait as the identity anchor.
 - **Complex-product risk screening**: identify wire, connector, repeated-part, and disassembly risks before generation, recommend avoiding the complex generated shot by default, and provide a company-discussion, shot-conversion, or real-footage path.
 - **Cinematic giant visuals**: create image or video prompts for Chinese dragons, deities, giants, mysterious beings, and disaster-scale scenes.
@@ -156,7 +165,8 @@ A completed storyboard or image grid does not prove that the video will work. A 
 | User mentions | Automatic action |
 | --- | --- |
 | Human-model module, real-person first frame, or talking-head character master | Select one original human-model prompt, generate and validate it with GPT Image 2, then continue to video |
-| `Seedance` | Prioritize the Seedance Fast branch |
+| `Seedance` plus detailed dot-drill, diamond painting, pearl painting, fuse beads, numbered circles, or repeated placement | Validate the macro detail image at full size, then enter the detailed bead-craft branch; treat the Chinese typo `精细化电钻` as `精细化点钻` only in bead-craft context |
+| Other `Seedance` requests | Enter the Seedance Fast branch |
 | Face masking, Black Fishnet, Scribble Mask, or Face Separation | Create a separate processed face reference, then continue to the Seedance video branch |
 | Complex wires, many connectors, repeated parts, disassembly, or installation | Recommend avoiding the complex generated shot by default; on company work, discuss a shot change first, then use a finished result, real close-up, or simple action if it remains mandatory |
 | Parent-child DIY, mother-daughter DIY, family crafting | Generate three independent GPT Image 2 images, then enter the Veo/Grok first-and-last-frame branch |
@@ -166,7 +176,7 @@ A completed storyboard or image grid does not prove that the video will work. A 
 | DIY, reference-video breakdown, or production-step recreation | Enter the DIY reference-video recreation branch |
 | Voiceover complete with no unboxing or video-tool trigger | Generate three independent multi-scene product images by default |
 
-An explicit Seedance request takes priority. Parent-child DIY overrides the generic product-image, unboxing, and direct Veo/Grok branches unless the user explicitly requests them as separate deliverables. When both Seedance and Veo/Grok are requested, the Skill produces separate outputs in the requested order and never merges their source prompts.
+When Seedance appears with dot-drill or fuse-bead context, the detailed branch takes priority over Seedance Fast. A real electric-drill product is not routed to the craft branch merely because the Chinese word `电钻` appears. Parent-child DIY overrides the generic product-image, unboxing, and direct Veo/Grok branches unless the user explicitly requests them as separate deliverables. When both Seedance and Veo/Grok are requested, the Skill produces separate outputs in the requested order and never merges their source prompts.
 
 ## Installation
 
@@ -222,6 +232,8 @@ Use natural language after installation. You do not need to select reference fil
 | "Turn this script into a Veo 3.1 multi-scene prompt." | Outputs mode selection, lock card, camera path, timeline, and final Veo prompt |
 | "Write a Grok multi-angle product-video prompt." | Applies the Veo/Grok continuous multi-angle camera rules |
 | "Write a 10-second Seedance prompt from the real usage method." | Prioritizes the Seedance Fast branch |
+| "Use Seedance to place pearls on circles 1 and 2, and check this macro image first." | Validates finished areas, empty labels, one individual piece, and tool contact before entering the detailed bead-craft branch |
+| "Make a Seedance macro video that places one fuse bead at a time." | Checks the pegboard, empty targets, piece geometry, and real method without importing facts from the Virgin Mary pearl-painting example |
 | "Mask this portrait before making the Seedance video." | Keeps the original portrait, creates a separate processed reference, then enters the Seedance branch |
 | "This product has complex wires and connectors. Check whether AI can generate it." | Checks topology, perspective, and repeated-part risks, then recommends generation, split shots, or real footage |
 | "Create a video prompt for a Chinese dragon over a stormy city." | Uses the cinematic giant-visual Skill |
@@ -244,6 +256,7 @@ Use $cinematic-giant-visual-prompts to create a realistic Chinese dragon video p
 - A winning reference video, first frame, character master image, or packaging reference.
 - A short character and outfit description plus the person-product action for the natural model; the beauty-presenter case also needs makeup, headband, and clothing references.
 - Product, dimensions, material-kit, DIY-tool, and picture-instruction references for parent-child DIY.
+- High-resolution macro and overview images, finished and unfinished areas, one individual piece, the tool, target positions, and the real placement method for detailed dot-drill or fuse-bead work.
 - Dialogue, voiceover, and sound requirements that must remain verbatim.
 - Target tool, duration, aspect ratio, scene count, and whether jump cuts are allowed.
 
@@ -278,6 +291,7 @@ AIvideo/
     │       ├── face-mask-preprocessing.md
     │       ├── complex-product-generation-risks.md
     │       ├── veo-grok-multi-scene-prompt.md
+    │       ├── seedance-detailed-bead-placement-prompt.md
     │       └── seedance-fast-10s-prompt.md
     └── cinematic-giant-visual-prompts/
         ├── SKILL.md
@@ -299,6 +313,7 @@ The reference prompts below come directly from the workflow I actually use:
 - [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md): warm, natural, non-influencer human-model first frame.
 - [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md): 9:16 skincare-presenter talking-head first frame.
 - [`veo-grok-multi-scene-prompt.md`](./skills/facebook-diy-video-workflow/references/veo-grok-multi-scene-prompt.md): Veo/Grok continuous multi-angle camera work and multi-scene video.
+- [`seedance-detailed-bead-placement-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-detailed-bead-placement-prompt.md): field-tested Seedance 2.0 Chinese high-precision example for placing pearls on numbered circles `1` and `2` in the Virgin Mary artwork.
 - [`seedance-fast-10s-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-fast-10s-prompt.md): Seedance Fast video unit.
 - [`original-prompt.md`](./skills/cinematic-giant-visual-prompts/references/original-prompt.md): cinematic giant image and video prompts.
 
@@ -316,10 +331,6 @@ The repository contains the instructions and prompts required by the Skills plus
 ## Contributing
 
 [Issues](https://github.com/Longxiaohao/AIvideo/issues) are welcome for new tool routes, real failure cases, routing improvements, installation issues, and compatibility reports.
-
-## Community
-
-Thanks to [LINUX DO](https://linux.do/) for fostering a sincere, friendly, collaborative, and professional technical community.
 
 ## License
 

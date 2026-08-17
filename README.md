@@ -128,6 +128,14 @@ flowchart LR
 - 如果公司仍然要求生成，我会提前说明失败率和返工成本。分镜图或宫格图通过不等于视频可用，必须给后续多次抽卡留出时间和额度。
 - 连续尝试仍然出现结构漂移时，我会停止这个生成分支，改用实拍、静态图轻推拉或剪辑转场，不再继续消耗视频额度。
 
+## 精细点钻与拼豆：图一定要先做细
+
+点钻、珍珠画、钻石画和拼豆虽然也是重复小零件，但我不会直接把它们全部判定成不能生成。只要镜头收得足够近、一次只做一个局部动作，还是可以尝试；前提是送进 Seedance 的图必须先做得很细。
+
+我会先放大检查首帧：已经完成的位置不能再露出编号，未完成的位置要少而清楚；珍珠、钻石或拼豆的形状、颜色、大小和排列必须正确；点钻笔、单颗材料、编号圆圈或拼豆底板的接触关系要真实。图不够清楚、材料已经变形、编号位置不对，或者完成区和未完成区混在一起，我就不会继续生成视频。
+
+视频阶段只让镜头盯住一个超近景区域，每次只放一颗材料，完成后移动到下一个空位，不重复粘、不叠加，也不让已经完成的位置恢复成数字或空格。仓库里的圣母珍珠画 Shot 07 是我实际使用的高精度 Seedance 案例，原文保持不变；换成其他图案或拼豆产品时，只能依据新的细节图和真实步骤单独生成运行时结果，不能把案例里的圣母图案、1号和2号、白色珍珠、粉色点钻笔或95%完成度直接套过去。
+
 ## 能做什么
 
 - **Facebook 熟龄口播**：根据产品图生成面向 35–45 岁北美受众的自然口播脚本。
@@ -138,6 +146,7 @@ flowchart LR
 - **第一人称开箱**：识别到开箱意图后，切换到工厂老头第一人称开箱分支。
 - **Veo / Grok 视频 Prompt**：处理真人口播、人物展示、纯产品、一镜到底和多场景跳切，明确区分运镜与切镜。
 - **Seedance Fast Prompt**：根据产品真实使用方法生成紧凑、连续、物理可执行的视频单元提示词。
+- **Seedance 精细点钻与拼豆**：先放大验收超近景首帧，再处理单颗珍珠、钻石或拼豆逐个放置的高精度局部动作。
 - **人脸遮罩预处理**：在 Seedance 前生成独立的人脸遮罩参考图，并保留原图作为人物身份锚点。
 - **复杂产品风险检查**：在出图前识别线路、接口、夹子、重复零件和拆解风险，默认先建议不做复杂生成镜头，并给出公司沟通、镜头转化或实拍方案。
 - **电影感巨物视觉**：生成中国龙、神明、巨物、神秘存在和灾难尺度场景的图像或视频提示词。
@@ -156,7 +165,8 @@ flowchart LR
 | 用户提到 | 自动执行 |
 | --- | --- |
 | 真人模块、真人模特首帧、口播人物母图 | 先选择一个真人原始 Prompt，用 GPT Image 2 出图并验收，再进入视频分支 |
-| `Seedance` | 优先进入 Seedance Fast 分支 |
+| `Seedance`＋精细点钻、点钻、珍珠画、钻石画、拼豆、编号圆圈、连续点贴 | 先放大验收超近景细节图，再进入精细点钻与拼豆分支；手作语境下的“精细化电钻”按“精细化点钻”识别 |
+| 其他 `Seedance` 请求 | 进入 Seedance Fast 分支 |
 | 人脸遮罩、黑色鱼线、涂抹遮罩、人脸分离 | 先生成独立的人脸处理参考图，再继续 Seedance 视频分支 |
 | 复杂线路、多接口、大量夹子、拆解或安装过程 | 默认建议不做复杂生成镜头；公司项目先沟通换镜头，必须做时转成结果展示、局部实拍或简单动作 |
 | 亲子 DIY、母女 DIY、家庭亲子手作 | 先用 GPT Image 2 生成 3 张独立竖图，再进入 Veo/Grok 首尾帧视频分支 |
@@ -166,7 +176,7 @@ flowchart LR
 | DIY、参考视频拆解、制作步骤复刻 | 进入 DIY 视频拆解复刻分支 |
 | 口播完成且未触发开箱或视频工具分支 | 默认进入 3 张独立多场景产品展示分支 |
 
-明确点名 Seedance 时优先执行 Seedance 分支。亲子 DIY 会覆盖普通多场景图片、开箱和直接 Veo/Grok 路由，除非用户明确要求把它们作为额外交付物。若同时明确要求 Seedance 和 Veo/Grok，Skill 会按用户指定顺序分别输出，不会合并两套原始 Prompt。
+明确点名 Seedance 且同时出现点钻或拼豆语境时，精细分支优先于 Seedance Fast。真正的电动工具不会因为“电钻”两个字误进手作分支。亲子 DIY 会覆盖普通多场景图片、开箱和直接 Veo/Grok 路由，除非用户明确要求把它们作为额外交付物。若同时明确要求 Seedance 和 Veo/Grok，Skill 会按用户指定顺序分别输出，不会合并两套原始 Prompt。
 
 ## 安装
 
@@ -222,6 +232,8 @@ cp -R skills/cinematic-giant-visual-prompts ~/.codex/skills/
 | 「把这段脚本写成 Veo 3.1 多场景视频提示词」 | 输出模式判定、锁定卡、运镜路径、时间轴和 Veo Final Prompt |
 | 「给我一版 Grok 多角度产品视频提示词」 | 使用 Veo/Grok 连续多角度运镜规则 |
 | 「根据真实使用方法写 Seedance 10 秒提示词」 | 优先进入 Seedance Fast 分支 |
+| 「用 Seedance 做点钻笔连续点贴1号、2号位置，先检查这张超近景图」 | 放大验收完成区、空白编号、单颗材料和工具接触，再进入精细点钻与拼豆分支 |
+| 「给这个拼豆产品做一次放一颗的 Seedance 超近景视频」 | 检查拼豆底板、空位、材料形状和实际步骤，不套用圣母珍珠画案例里的产品事实 |
 | 「先给这张人物图做人脸遮罩，再生成 Seedance 视频」 | 保留原图，生成独立遮罩参考图后进入 Seedance 分支 |
 | 「这个产品线路和接口很复杂，先判断 AI 能不能做」 | 检查拓扑、透视和重复零件风险，给出生成、拆镜或实拍方案 |
 | 「生成暴雨城市中的中国龙视频提示词」 | 使用电影感巨物视觉 Skill |
@@ -244,6 +256,7 @@ Use $cinematic-giant-visual-prompts to create a realistic Chinese dragon video p
 - 爆款参考视频、视频首帧、人物母图或包装参考图。
 - 真人首帧所需的简要人物与穿搭、人物与产品动作；护肤博主案例还需要妆容、发箍和服装参考图。
 - 亲子 DIY 所需的产品图、尺寸图、材料包、DIY 工具和图片说明书参考图。
+- 精细点钻或拼豆所需的高清超近景图、产品全貌图、已完成与未完成区域、单颗材料、工具、目标位置和真实放置方法。
 - 必须逐字保留的口播、旁白和声音要求。
 - 目标工具、时长、画幅、场景数量和是否允许跳切。
 
@@ -278,6 +291,7 @@ AIvideo/
     │       ├── face-mask-preprocessing.md
     │       ├── complex-product-generation-risks.md
     │       ├── veo-grok-multi-scene-prompt.md
+    │       ├── seedance-detailed-bead-placement-prompt.md
     │       └── seedance-fast-10s-prompt.md
     └── cinematic-giant-visual-prompts/
         ├── SKILL.md
@@ -299,6 +313,7 @@ AIvideo/
 - [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md)：温婉自然、非网红脸的真人模特首帧。
 - [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md)：9:16 护肤博主真人口播首帧。
 - [`veo-grok-multi-scene-prompt.md`](./skills/facebook-diy-video-workflow/references/veo-grok-multi-scene-prompt.md)：Veo/Grok 连续多角度运镜与多场景视频。
+- [`seedance-detailed-bead-placement-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-detailed-bead-placement-prompt.md)：圣母珍珠画连续点贴1号、2号圆圈位置的 Seedance 2.0 中文高精度案例。
 - [`seedance-fast-10s-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-fast-10s-prompt.md)：Seedance Fast 视频单元。
 - [`original-prompt.md`](./skills/cinematic-giant-visual-prompts/references/original-prompt.md)：电影感巨物图像与视频提示词。
 
@@ -316,10 +331,6 @@ AIvideo/
 ## 贡献
 
 欢迎通过 [Issues](https://github.com/Longxiaohao/AIvideo/issues) 提交新的视频工具触发分支、真实失败案例、路由改进建议，以及 Skill 安装和兼容问题。
-
-## 社区
-
-感谢 [LINUX DO](https://linux.do/) 提供真诚、友善、团结、专业的技术交流环境。
 
 ## License
 

@@ -1,6 +1,6 @@
 ---
 name: facebook-diy-video-workflow
-description: Create Facebook ecommerce scripts, human-model first frames, product images, and AI-video prompts with the field-tested source prompts bundled in this repository. Use for real-person or talking-head first-frame prompts, GPT Image 2 character images, Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video workflows, post-script multi-scene images, first-person unboxing, Veo 3/3.1 prompts, Grok video prompts, Seedance Fast prompts, PromptHub face-mask preprocessing, or feasibility checks for products with complex wires, clips, repeated parts, fragile perspective, disassembly, or installation sequences. Route explicit human-model requests through the first-frame image module before image-to-video; route explicit Seedance mentions to the Seedance branch; route parent-child DIY requests through GPT Image 2 before Veo/Grok; recommend converting complex structure and disassembly shots before generation. Treat all bundled prompt files as immutable source text.
+description: Create Facebook ecommerce scripts, human-model first frames, product images, and AI-video prompts from bundled field-tested source prompts. Use for talking-head first frames, GPT Image 2 character images, Facebook spoken scripts, DIY reference-video recreation, parent-child DIY image-to-video, multi-scene product images, first-person unboxing, Veo/Grok prompts, Seedance Fast prompts, precise diamond-painting, pearl-painting, dot-drill, or fuse-bead placement shots, PromptHub face-mask preprocessing, and feasibility checks for products with complex wires, clips, repeated parts, disassembly, or installation. Route detailed bead-craft Seedance requests through a full-size first-frame quality gate and other Seedance requests to Fast; route parent-child DIY through GPT Image 2 before Veo/Grok; recommend converting complex shots. Treat all bundled prompt files as immutable source text.
 ---
 
 # Facebook DIY Video Workflow
@@ -19,7 +19,8 @@ Use the bundled original prompts without rewriting them.
 
 - For a natural lifestyle human-model first frame, read and use [references/human-model-prompts/natural-lifestyle-first-frame-prompt.md](references/human-model-prompts/natural-lifestyle-first-frame-prompt.md) verbatim.
 - For the detailed Chinese beauty-presenter first frame, read and use [references/human-model-prompts/beauty-presenter-first-frame-prompt.md](references/human-model-prompts/beauty-presenter-first-frame-prompt.md) verbatim.
-- For any Seedance request, read and use [references/seedance-fast-10s-prompt.md](references/seedance-fast-10s-prompt.md) verbatim.
+- For a Seedance request about detailed dot-drill, diamond-painting, pearl-painting, numbered-circle placement, fuse beads, Perler beads, or equivalent precision bead craft, read [references/seedance-detailed-bead-placement-prompt.md](references/seedance-detailed-bead-placement-prompt.md) completely and preserve it as the immutable field-tested example. Apply the detailed bead-craft route below before video generation.
+- For any other Seedance request, read and use [references/seedance-fast-10s-prompt.md](references/seedance-fast-10s-prompt.md) verbatim.
 - For a parent-child DIY request, read and use [references/parent-child-diy-image-prompt.md](references/parent-child-diy-image-prompt.md) verbatim, then continue through the Veo/Grok prompt as defined below.
 - For Veo, Veo 3, Veo 3.1, Grok, Grok prompt, multi-scene video switching, or continuous multi-angle camera movement, read and use [references/veo-grok-multi-scene-prompt.md](references/veo-grok-multi-scene-prompt.md) verbatim.
 - For a Facebook mature-audience spoken sales script or the user's "GPT full workflow," read and use [references/gpt-full-workflow.md](references/gpt-full-workflow.md) verbatim.
@@ -38,6 +39,8 @@ Before any image or video generation, inspect the product for complex wires, cor
 4. Produce the required feasibility note before generation. Preserve the communication purpose of the shot while proposing a finished-result view, presenter shot, voice-over, real close-up, or another simpler visual.
 5. Continue only when the user still requires generation. Validate the first generated image against the exact structure at full size, then restrict each generated shot to one local area, one connector, or one simple action.
 6. Stop the image-to-video branch if a critical part, path, endpoint, count, connection, or perspective relationship is wrong or drifts during motion. Use the reference's real-footage, static-image, or editing fallback instead of attempting to hide the error with more camera movement.
+
+For detailed bead-craft work, do not reject the shot only because it contains repeated beads or a grid. Route it through the dedicated first-frame gate, restrict the shot to one verified macro area and one-piece-at-a-time placement, and stop when the grid, numbered position, completed state, piece count, or contact relationship is wrong.
 
 This preflight supplements the selected original prompt without modifying it.
 
@@ -84,17 +87,30 @@ Apply this route when the user mentions parent-child DIY or equivalent wording i
 
 This route overrides the generic Veo/Grok direct route, the post-script product-display route, and the unboxing route unless the user explicitly requests separate additional deliverables.
 
+## Route Detailed Bead-Craft Seedance Shots
+
+Apply this route before the generic Seedance Fast branch when Seedance appears with `精细点钻`, `点钻`, `拼豆`, `珍珠画`, `钻石画`, `编号圆圈`, `连续点贴`, `fuse beads`, `Perler beads`, or equivalent wording. Treat `精细化电钻` as a likely typo for `精细化点钻` only when bead-craft context is also present; do not route an actual electric-drill product here.
+
+1. Require a detailed macro product image before writing or running the video prompt. Require a separate product overview when the crop alone cannot establish product identity, plus the exact tool, piece shape, piece color, target positions, completed state, and real placement method.
+2. Inspect the macro image at full size. Verify that the local product pattern is sharp, the finished and unfinished areas are unambiguous, every visible bead or pixel piece has the correct shape and scale, numbered circles or peg positions are legible only where they should remain empty, and the hand-tool contact can be executed physically.
+3. Reject or regenerate the still image before video when the reference is soft, distant, overly unfinished, structurally inconsistent, missing target positions, or already contains duplicated, floating, merged, or deformed pieces. Do not expect Seedance to repair a weak first frame.
+4. Limit each video unit to one verified macro area and one simple repeated action. Place one new bead or piece at a time, preserve every previously completed position, move to a new empty target after each placement, and keep the tool tip, hand, grid, canvas, and product pattern consistent.
+5. For the exact Virgin Mary pearl-painting Shot 07 shown in the bundled example, use [references/seedance-detailed-bead-placement-prompt.md](references/seedance-detailed-bead-placement-prompt.md) verbatim.
+6. For another artwork, diamond-painting design, or fuse-bead product, keep the bundled example file unchanged and use it only as the field-tested execution reference. Build the runtime output separately from the user's verified facts. Never carry over the Virgin Mary design, `1` and `2` labels, white pearls, pink pen, 95% completion, or any other example fact unless the supplied references confirm it.
+7. Stop and request the missing or corrected image when a product fact needed by the macro action is unavailable. Do not invent a grid, label, bead color, pattern, completion percentage, tool, hand direction, or placement result.
+
 ## Route Video Prompt Requests
 
 Apply this routing after completing any explicitly requested human-model or parent-child image stage and before the script and post-script image routes:
 
 1. Match tool names case-insensitively and recognize equivalent wording in any language.
-2. If the request mentions Seedance, select only the original Seedance Fast prompt. Require the real product usage method, product reference, size evidence when scale matters, requested duration, aspect ratio, and any dialogue before execution. Do not reuse the example product facts as facts about the user's product.
-3. Otherwise, if parent-child DIY is present, execute the complete parent-child DIY route before producing the Veo/Grok prompt.
-4. Otherwise, if the request mentions Veo, Veo 3, Veo 3.1, Grok, a Grok prompt, multi-scene video switching, or continuous multi-angle camera movement, select only the original Veo/Grok prompt.
-5. When the Veo/Grok route is selected, preserve the prompt's A-E mode routing. Use mode E only for true scene changes with explicit timed jump cuts; keep multiple angles within one scene as continuous physical camera movement.
-6. A selected video-prompt branch overrides the default post-script three-image branch unless the user explicitly requests the images or a human-model first frame as an additional deliverable.
-7. If both Seedance and Veo/Grok are explicitly requested, produce separate outputs for each tool in the user's requested order. Never merge their source prompts.
+2. If the request mentions Seedance together with a detailed bead-craft trigger, execute the detailed bead-craft route and its first-frame quality gate before selecting the stored high-precision example or producing a separate runtime prompt from verified product facts.
+3. Otherwise, if the request mentions Seedance, select only the original Seedance Fast prompt. Require the real product usage method, product reference, size evidence when scale matters, requested duration, aspect ratio, and any dialogue before execution. Do not reuse the example product facts as facts about the user's product.
+4. Otherwise, if parent-child DIY is present, execute the complete parent-child DIY route before producing the Veo/Grok prompt.
+5. Otherwise, if the request mentions Veo, Veo 3, Veo 3.1, Grok, a Grok prompt, multi-scene video switching, or continuous multi-angle camera movement, select only the original Veo/Grok prompt.
+6. When the Veo/Grok route is selected, preserve the prompt's A-E mode routing. Use mode E only for true scene changes with explicit timed jump cuts; keep multiple angles within one scene as continuous physical camera movement.
+7. A selected video-prompt branch overrides the default post-script three-image branch unless the user explicitly requests the images or a human-model first frame as an additional deliverable.
+8. If both Seedance and Veo/Grok are explicitly requested, produce separate outputs for each tool in the user's requested order. Never merge their source prompts.
 
 ## Route Post-Script Images
 
@@ -111,7 +127,7 @@ The unboxing branch overrides the multi-scene prohibition on grids only for its 
 ## Run the Workflow
 
 1. Screen the product for complex-generation risks and apply the preflight module when needed.
-2. Complete the human-model first-frame route when explicitly requested, then check for Seedance, parent-child DIY, and the remaining video-prompt, script, or image routes.
+2. Complete the human-model first-frame route when explicitly requested, then check for detailed bead-craft Seedance, generic Seedance, parent-child DIY, and the remaining video-prompt, script, or image routes.
 3. Confirm the required product image, dimensions, character references, and reference video are available when the selected prompt depends on them.
 4. Generate and validate every required image reference before video generation. Stop when a first-frame defect would damage identity, anatomy, product truth, or realism in motion.
 5. Prepare a separate face-mask reference when requested, then continue through the selected video branch.
