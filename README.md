@@ -1,212 +1,212 @@
 <div align="center">
 
-# 跨境电商 AI 带货视频制作
+# Cross-Border E-commerce AI Video Production
 
-**一套面向低成本、复杂 AI 带货视频制作的 Codex Skills 与实战 Prompt SOP。**
+**Codex Skills and field-tested prompt SOPs for producing complex AI commerce videos at lower cost.**
 
-先写脚本与口播，再生成并验收真人首帧和产品图、处理人脸遮罩参考图、图生视频、制作爆款开头，并通过 Codex 或 Claude 拆解参考视频。
+Write the script and voiceover first, generate and validate the human-model first frame and product images, prepare face-mask references, turn images into video, build a high-retention grid opening, and use Codex or Claude to break down reference videos.
 
 [![GitHub stars](https://img.shields.io/github/stars/Longxiaohao/AIvideo?style=flat-square)](https://github.com/Longxiaohao/AIvideo/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](./LICENSE)
 [![Codex Skills](https://img.shields.io/badge/Codex-Skills-black.svg?style=flat-square)](./skills)
-[![Video Tools](https://img.shields.io/badge/video-Veo%20%7C%20Grok%20%7C%20Seedance-orange.svg?style=flat-square)](#自动路由)
+[![Video Tools](https://img.shields.io/badge/video-Veo%20%7C%20Grok%20%7C%20Seedance-orange.svg?style=flat-square)](#automatic-routing)
 
-**中文** | [English](./README.en.md)
+[中文](./README.zh-CN.md) | **English**
 
 </div>
 
 ---
 
-## 我为什么做这个项目
+## Why I Built This Project
 
-我把自己在跨境电商带货视频项目里实际跑过的 Prompt、路由规则和踩坑经验，整理成了一套可以直接复用的 SOP。做电商视频或准备 AI 视频岗位作品集时，可以沿着这条路线少走一些弯路，用免费的豆包 Seedance Fast 搭配 Grok、Veo，完成从脚本、出图到图生视频的大部分流程。
+I organized the prompts, routing rules, and lessons from my own cross-border e-commerce video projects into a reusable SOP. Anyone making commerce videos or preparing an AI-video portfolio can follow the same route, avoid some of the detours, and use the free Doubao Seedance Fast workflow with Grok and Veo to cover most of the path from scripting and image generation to image-to-video.
 
-产品资料和参考素材齐全时，可以用这套流程灵活切换工具，目标是在 1 小时内完成一条结构比较复杂的 AI 带货视频，也可以用来熟悉真实制作流程、整理作品集。具体用时仍会受到生成排队、产品难度和返工次数影响。
+With complete product information and references, the workflow can switch between tools and aims to produce a fairly complex AI commerce video within one hour. It can also serve as a practical production reference and portfolio workflow. Actual time still depends on generation queues, product difficulty, and retries.
 
-这个仓库里保留的都是我实际使用的原始 Prompt。Skill 只负责任务识别、输入检查和分支调度，我不会为了看起来更短、更“专业”就把这些实践 Prompt 二创、压缩或改写。
+The prompts in this repository are the original versions I actually use. The Skills only identify the task, check the inputs, and route the workflow. I do not rewrite or shorten these prompts just to make them look cleaner or more polished.
 
-## 核心工作流
+## Core Workflow
 
 ```mermaid
 flowchart LR
-    A["Codex / Claude<br/>拆解爆款视频"] --> B["脚本与口播"]
-    B --> C["真人模特首帧<br/>产品图与场景图"]
-    C --> D["人脸遮罩<br/>参考图预处理"]
-    D --> E["Veo / Grok / Seedance<br/>图生视频"]
-    E --> F["宫格爆款开头"]
-    F --> G["剪辑与成片"]
+    A["Codex / Claude<br/>Break down winning videos"] --> B["Script and voiceover"]
+    B --> C["Human-model first frame<br/>Product and scene images"]
+    C --> D["Face-mask<br/>reference preprocessing"]
+    D --> E["Veo / Grok / Seedance<br/>Image-to-video"]
+    E --> F["Grid-style viral opening"]
+    F --> G["Editing and final video"]
 ```
 
-1. 使用 Codex 或 Claude 拆解爆款参考视频，提取开头结构、镜头、制作动作和节奏。
-2. 根据产品事实先写脚本和口播，锁定受众、台词、场景和视频时长。
-3. 根据人物要求、产品图、尺寸图和脚本生成真人模特首帧、产品展示图、亲子 DIY 图、开箱图或视频首尾帧，并先完成静态图验收。
-4. 真人素材需要遮罩时，保留原图并生成独立的人脸处理参考图。
-5. 根据预算和任务难度选择 Veo 3.1、Grok 或免费的豆包 Seedance Fast 进行图生视频。
-6. 使用宫格素材制作爆款开头，再进入常规剪辑、声音和成片流程。
+1. Use Codex or Claude to break down a successful reference video and extract its opening structure, shots, production actions, and pacing.
+2. Write the script and voiceover from verified product facts, locking the audience, dialogue, scenes, and target duration.
+3. Generate and validate the human-model first frame, product displays, parent-child DIY scenes, unboxing images, or first and last frames from the character requirements, product image, dimensions, and script.
+4. When a portrait needs masking, keep the original and create a separate processed face reference.
+5. Select Veo 3.1, Grok, or the free Doubao Seedance Fast according to budget and task complexity.
+6. Build a high-retention opening from grid assets, then complete standard editing, sound, and delivery.
 
-## 真人模特首帧模块
+## Human-Model First-Frame Module
 
-> **这套流程主要是图生视频，所以图决定了视频的真实感。**
+> **This workflow is primarily image-to-video, so the image determines the video's realism.**
 
-我实际做下来，真人视频最不能省的就是首帧。人物的脸、皮肤、发丝、手指、嘴部遮挡、产品比例和拿产品的动作，只要在图里已经错了，Veo、Grok 或 Seedance 不会在视频里自动修好，很多时候反而会把问题放大。所以我会先把真人首帧单独做准，放大检查通过以后，才继续做人脸遮罩和图生视频。
+In my actual projects, the first frame is the part of a real-person video I cannot afford to rush. If the face, skin, hair, fingers, visible mouth, product scale, or person-product action is already wrong in the still image, Veo, Grok, or Seedance will not repair it automatically. Motion usually makes the defect more obvious. I therefore finish and inspect the human-model first frame before moving on to face masking or image-to-video.
 
-我把目前在用的两个真人 Prompt 分开保存在英文目录 [`human-model-prompts`](./skills/facebook-diy-video-workflow/references/human-model-prompts/)，不会把它们揉成一个新 Prompt：
+I keep the two prompts I currently use as separate source files in the English-named [`human-model-prompts`](./skills/facebook-diy-video-workflow/references/human-model-prompts/) directory. I do not blend them into a newly rewritten prompt:
 
-| 模块 | 我在什么情况下用 | 运行时还要提供什么 |
+| Module | When I use it | Additional runtime inputs |
 | --- | --- | --- |
-| [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md) | 温婉、自然、非网红脸的生活化真人模特，需要根据产品调整人物和动作 | 简要人物与穿搭、人物与产品的真实动作、产品图和必要的尺寸图 |
-| [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md) | 9:16 中国年轻护肤博主正面半身口播首帧，需要更细的皮肤、妆容、服装、灯光和负面限制 | `参考的妆容.jpg`、`发箍.png`、`服装.png`，以及需要同框时的产品参考 |
+| [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md) | A warm, natural, non-influencer lifestyle model whose description and action change with the product | Short character and outfit description, real person-product action, product image, and dimensions when scale matters |
+| [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md) | A 9:16 front-facing Chinese skincare-presenter frame with detailed skin, makeup, wardrobe, lighting, and negative constraints | `参考的妆容.jpg`, `发箍.png`, `服装.png`, plus a product reference when the product appears |
 
-两个文件都保留我给出的原始文字。案例一里的“简要描述人物+穿搭”和“人物与产品的动作”由实际项目素材单独提供，不写回原文件；案例二点名的参考图缺一张，我就先补齐素材，不假装模型已经看过。最后把选中的原始 Prompt、参考图和单独提供的项目事实一起放进 GPT Web，使用 [GPT Image 2](https://developers.openai.com/api/docs/models/gpt-image-2) 出图。
+Both files preserve the original Chinese text I supplied. For case one, I pass the short character-and-outfit description and the person-product action as separate project inputs instead of writing them into the source file. For case two, I supply every named reference image rather than pretending the model has seen a missing file. I then place the selected source prompt, references, and separate project facts into GPT Web and generate the frame with [GPT Image 2](https://developers.openai.com/api/docs/models/gpt-image-2).
 
-首帧出来后，我会检查人脸是否自然、全身裸露皮肤质感是否统一、双手和手指是否正确、眼睛和嘴是否被挡、产品结构和尺寸是否正确、人与产品的接触关系是否成立，以及画面里有没有多余文字或界面。任何一个关键项不对，我都会先重出图，不直接进入视频阶段。
+I inspect the result for a natural face, consistent exposed-skin texture, correct hands and fingers, unobstructed eyes and mouth, correct product structure and scale, believable contact between the person and product, and the absence of unintended text or interface elements. If a critical check fails, I regenerate the still instead of sending it into the video stage.
 
-## 工具降级策略
+## Tool Fallback Strategy
 
-同一套脚本与素材可以根据预算、排队时间和生成效果切换工具，而不必推翻整个流程。
+The same script and assets can move between tools according to budget, queue time, and generation quality without rebuilding the entire workflow.
 
-| 任务 | 优先工具 | Skill 负责什么 |
+| Task | Preferred tool | What the Skill handles |
 | --- | --- | --- |
-| 爆款视频拆解 | Codex / Claude | 提取镜头、动作、节奏与可复刻结构 |
-| 真人模特首帧 | GPT Web / GPT Image 2 | 锁定人物、皮肤、手部、产品比例和首帧构图 |
-| 复杂多场景视频 | Veo 3.1 | 输出跳切时间、多角度运镜和一致性锁定 |
-| 快速图生视频 | Grok / Veo | 压缩成物理可执行的短视频单元 |
-| 人脸参考图预处理 | PromptHub 人脸工具箱 | 保留人物、产品与台词锚点 |
-| 爆款开头 | 独立宫格素材 | 拆解开头结构并组织镜头顺序 |
+| Winning-video breakdown | Codex / Claude | Extracts shots, actions, pacing, and reusable structure |
+| Human-model first frame | GPT Web / GPT Image 2 | Locks character, skin, hands, product scale, and opening composition |
+| Complex multi-scene video | Veo 3.1 | Defines jump-cut timing, multi-angle camera paths, and continuity locks |
+| Fast image-to-video | Grok / Veo | Compresses the plan into a physically executable short-video unit |
+| Face-reference preprocessing | PromptHub Face Tools | Preserves character, product, and dialogue anchors |
+| High-retention opening | Independent grid assets | Breaks down the opening structure and organizes shot order |
 
-工具降级只改变执行工具，不改变产品事实、口播台词、尺寸关系、制作步骤和原始 Prompt。
+Fallback changes the execution tool only. It must not alter verified product facts, exact dialogue, scale, assembly steps, or any original prompt.
 
-## 人脸遮罩模块
+## Face-Mask Module
 
-我在 Seedance 里使用真人参考图时，会先对人脸区域做一张处理图，再把人物原图和处理图一起用于后续视频生成。我目前用的是 [PromptHub 人脸工具箱](https://prompthub.xin/lab/face-tools)，直接通过[邮箱账号登录](https://prompthub.xin/en/auth/login)，我现在使用的人脸处理功能是免费的。
+When I use a real-person reference in Seedance, I first create a processed version of the face, then provide both the original portrait and the processed image to the video workflow. I currently use [PromptHub Face Tools](https://prompthub.xin/lab/face-tools), sign in with an [email account](https://prompthub.xin/en/auth/login), and use the face-processing features that are free at the moment.
 
-我把它放在这里，只是因为我自己用下来觉得免费、顺手，不是广告，也没有赞助或商业合作。第三方网站以后可能会调整登录方式、免费范围和功能，所以还是要以网站当时的页面为准。你要上传人物素材时，也要先确认自己有权使用这些素材，并接受网站的隐私条款。
+I am sharing it simply because I have found it free and convenient to use. This is not an advertisement, sponsorship, or commercial partnership. The site's login methods, free tier, and features may change, so check the current page before using it. Before uploading a portrait, make sure you have permission to use it and accept the site's privacy terms.
 
-### 工具入口
+### Tool Entry
 
-进入 PromptHub 后，在“提示词工作台”中选择“人脸工具箱”。
+Open Prompt Workspace in PromptHub and select Face Tools.
 
-![PromptHub 人脸工具箱入口](./docs/images/prompthub-face-tools-entry.png)
+![PromptHub Face Tools entry](./docs/images/prompthub-face-tools-entry.png)
 
-### 我现在怎么用
+### How I Use It
 
-1. 保留未经处理的人物原图，作为人物身份、发型、服装和姿态的主参考。
-2. 上传人物图，只圈选需要处理的人脸区域，不遮挡产品、双手或身体动作。
-3. 根据任务选择黑色鱼线、涂抹遮罩、雾化马赛克、人脸分离或拼图等方式。
-4. 下载处理结果并单独保存，不覆盖原图。
-5. 在后续 Seedance 视频生成中同时提供人物原图和人脸处理图，再继续使用原始 Seedance Prompt。
+1. Keep the untreated portrait as the primary reference for identity, hair, clothing, and pose.
+2. Upload the portrait and mark only the face region. Do not cover the product, hands, or body action.
+3. Choose Black Fishnet, Scribble Mask, Fog Mosaic, Face Separation, Puzzle Pieces, or the treatment required by the task.
+4. Download the result as a separate file and never overwrite the original portrait.
+5. Provide both the original portrait and the processed face reference to Seedance, then continue with the immutable Seedance prompt.
 
-![PromptHub 黑色鱼线人脸遮罩处理示例](./docs/images/prompthub-face-mask-example.png)
+![PromptHub black-fishnet face-mask example](./docs/images/prompthub-face-mask-example.png)
 
-人脸遮罩只负责准备参考图，不负责修改产品、台词、动作、场景或视频 Prompt。
+Face masking prepares a reference image only. It does not modify the product, dialogue, actions, scene, or video prompt.
 
-## 我踩过的坑：复杂产品真的很难生成
+## A Problem I Hit: Complex Products Are Hard to Generate
 
-这个坑我在实际项目里踩过：不是所有产品都适合直接丢给 GPT Image 2 出图，再拿生成图去做视频。产品只要边边角角特别多、线路会交叉、连接关系复杂，或者有很多重复的小零件，AI 就很容易把透视和结构做错。
+I learned this the hard way on real projects: not every product can go straight into GPT Image 2 and then into image-to-video. As soon as a product has lots of edges, crossing wires, exact connections, or many repeated small parts, AI starts getting the perspective and structure wrong.
 
 <p align="center">
-  <img src="./docs/images/complex-wired-product-example.jpg" alt="复杂线路产品示例" width="420">
+  <img src="./docs/images/complex-wired-product-example.jpg" alt="Complex wired product example" width="420">
 </p>
 
-拿上图这种一拖二线路产品来说，它不只是两个插座这么简单。线从哪里分出去、怎么弯、怎么卷、最后接到哪里，插头和插座朝哪个方向，全部都要对。我的实际测试是，AI 可以把它做得“看起来像”，但经常会把线路接错、凭空多接一根线、把两个连接合在一起，或者做出物理上根本不成立的透视。
+Take the two-way wired product above. It is not simply a pair of outlets. The cable path, split, bends, coils, endpoints, plug direction, and outlet direction all have to stay correct. In my tests, AI could make something that looked similar at first glance, but it often rerouted a wire, invented a connection, merged two paths, or produced physically impossible perspective.
 
-还有那种带很多晾衣小夹子的产品，也是同样的问题。GPT Image 2 经常连图片都生不准，小夹子的数量、方向和连接位置会乱，拿这种错误图片继续做视频，最后基本都没法用。
+I ran into the same problem with products that contain many small clothes clips. GPT Image 2 often could not get even the still image right: the number, direction, and attachment points of the clips would drift. Once I used one of those incorrect images for video, the result was usually unusable.
 
-### 生成前我先判断这个镜头要不要做
+### I First Decide Whether the Shot Is Worth Generating
 
-我的原则很直接：只要镜头要求 AI 准确还原复杂线路、多个接口、大量重复零件、完整拆解过程或严格的安装顺序，我都会优先建议不做这类生成镜头。不是说完全不能抽出来，而是返工次数和生成成本通常不值得。
+My rule is straightforward: when a shot requires AI to preserve complex wiring, several exact connectors, many repeated parts, a complete disassembly sequence, or a strict installation order, I normally recommend not generating that shot. It may be possible after enough attempts, but the retries and cost are usually not worth it.
 
-如果是在公司做项目，我会先把产品结构风险和后续抽卡成本说清楚，再和上级或项目负责人沟通换镜头。可以把复杂拆解改成成品结果展示、人物拿产品口播、局部细节、包装展示、旁白说明，或者直接换成真实产品素材。先把镜头目的保留下来，不一定非要让 AI 演完整个复杂过程。
+On a company project, I explain the structural risk and likely reroll cost first, then discuss a shot change with my manager or project lead. I can replace the complex disassembly with a finished-result shot, a presenter holding the product, a detail view, packaging, voice-over explanation, or real product footage. I keep the communication goal of the shot without forcing AI to perform the full complex process.
 
-即使前面的分镜图、宫格图已经生成成功，也不能说明后面的视频就能做成。静态图只需要某一帧看起来成立，图生视频却要连续保持线路走向、零件数量、接口位置、手部接触和空间透视。我的实际感受是，这一步会进入很难受的反复抽卡，首帧看着没问题，产品一动还是可能马上变形、断线、增减零件或接错结构。
+A completed storyboard or image grid does not prove that the video will work. A still image only has to look plausible for one frame. Image-to-video has to preserve cable paths, part counts, connector positions, hand contact, and spatial perspective over time. In my experience, this leads to frustrating repeated rerolls: the first frame can look correct, but the product may deform, disconnect, gain or lose parts, or change topology as soon as it moves.
 
-### 如果一定要做，我会先转化镜头
+### If the Shot Is Mandatory, I Convert It First
 
-- 我不会让 AI 在一个镜头里完成长时间拆解、组装、穿线或多个结构变化，而是优先改成“正确成品状态＋旁白说明”，把复杂过程从画面动作里拿掉。
-- 必须交代操作时，我会把镜头缩到一个局部、一个接口或一个简单动作；关键结构和真实使用关系优先用实拍特写、真实产品图或人工校正素材。
-- 人物、房间、氛围、包装和普通展示可以交给 AI，产品本身尽量保持静止，只做很轻的运镜和环境变化，不同时叠加复杂手部动作、产品运动和大幅运镜。
-- 如果公司仍然要求生成，我会提前说明失败率和返工成本。分镜图或宫格图通过不等于视频可用，必须给后续多次抽卡留出时间和额度。
-- 连续尝试仍然出现结构漂移时，我会停止这个生成分支，改用实拍、静态图轻推拉或剪辑转场，不再继续消耗视频额度。
+- I do not ask AI to complete a long disassembly, assembly, threading sequence, or several structural changes in one shot. I first convert it into a verified finished state with voice-over, removing the complex process from the visible action.
+- When an operation must be shown, I reduce it to one local area, one connector, or one simple action. Critical structure and real usage relationships stay in real close-up footage, real product images, or manually corrected material.
+- AI can handle the person, room, atmosphere, packaging, and ordinary presentation. I keep the product mostly static and use only restrained camera or environmental motion instead of combining complex hand action, product motion, and aggressive camera movement.
+- If the company still requires generation, I explain the failure rate and rework cost in advance. An approved storyboard or image grid does not mean the video will be usable, so the schedule and budget need room for repeated rerolls.
+- If structural drift continues after repeated attempts, I stop the generative branch and switch to real footage, a subtle push on a still image, or an editorial transition instead of spending more video credits.
 
-## 精细点钻与拼豆：图一定要先做细
+## Detailed Dot-Drill and Fuse-Bead Shots: Make the Image Precise First
 
-点钻、珍珠画、钻石画和拼豆虽然也是重复小零件，但我不会直接把它们全部判定成不能生成。只要镜头收得足够近、一次只做一个局部动作，还是可以尝试；前提是送进 Seedance 的图必须先做得很细。
+Diamond painting, pearl painting, dot-drill work, and fuse beads also contain many repeated small parts, but I do not automatically reject every such shot. A tightly framed shot with one simple local action can still be attempted, provided that the image supplied to Seedance is already highly detailed.
 
-我会先放大检查首帧：已经完成的位置不能再露出编号，未完成的位置要少而清楚；珍珠、钻石或拼豆的形状、颜色、大小和排列必须正确；点钻笔、单颗材料、编号圆圈或拼豆底板的接触关系要真实。图不够清楚、材料已经变形、编号位置不对，或者完成区和未完成区混在一起，我就不会继续生成视频。
+I inspect the first frame at full size before video generation. Finished positions must not reveal their labels again, unfinished targets must be few and clearly readable, and every pearl, diamond, or fuse bead must have the correct shape, color, size, and arrangement. The relationship among the tool, one individual piece, the numbered circle or pegboard, and the contact point must be physically believable. I do not continue when the image is soft, the pieces are deformed, the targets are wrong, or the finished and unfinished areas are visually confused.
 
-视频阶段只让镜头盯住一个超近景区域，每次只放一颗材料，完成后移动到下一个空位，不重复粘、不叠加，也不让已经完成的位置恢复成数字或空格。仓库里的圣母珍珠画 Shot 07 是我实际使用的高精度 Seedance 案例，原文保持不变；换成其他图案或拼豆产品时，只能依据新的细节图和真实步骤单独生成运行时结果，不能把案例里的圣母图案、1号和2号、白色珍珠、粉色点钻笔或95%完成度直接套过去。
+During video generation, I keep the shot on one verified macro area and place only one piece at a time. After each placement, the tool moves to a new empty target without repeating or stacking pieces, and completed positions never revert to labels or empty spaces. The bundled Virgin Mary pearl-painting Shot 07 is a field-tested high-precision Seedance example and remains unchanged. For another design or fuse-bead product, the runtime result must come from new detail images and the real production steps; it must not inherit the example's Virgin Mary artwork, labels `1` and `2`, white pearls, pink pen, or 95% completion unless the new references prove those facts.
 
-## 能做什么
+## Capabilities
 
-- **Facebook 熟龄口播**：根据产品图生成面向 35–45 岁北美受众的自然口播脚本。
-- **真人模特首帧**：按自然生活模特或护肤博主两个独立 Prompt，用 GPT Image 2 生成并验收图生视频的人物母图。
-- **DIY 视频拆解复刻**：分析参考视频中的制作步骤，生成 15 秒 Facebook AI 视频脚本。
-- **亲子 DIY 图片转视频**：先用 GPT Image 2 逐张生成 3 张独立的美国家庭亲子 DIY 竖图，再生成 Veo 3.1 或 Grok 首尾帧视频提示词。
-- **多场景产品展示**：口播完成后，默认生成 3 张不同场景、独立输出的 9:16 产品图。
-- **第一人称开箱**：识别到开箱意图后，切换到工厂老头第一人称开箱分支。
-- **Veo / Grok 视频 Prompt**：处理真人口播、人物展示、纯产品、一镜到底和多场景跳切，明确区分运镜与切镜。
-- **Seedance Fast Prompt**：根据产品真实使用方法生成紧凑、连续、物理可执行的视频单元提示词。
-- **Seedance 精细点钻与拼豆**：先放大验收超近景首帧，再处理单颗珍珠、钻石或拼豆逐个放置的高精度局部动作。
-- **人脸遮罩预处理**：在 Seedance 前生成独立的人脸遮罩参考图，并保留原图作为人物身份锚点。
-- **复杂产品风险检查**：在出图前识别线路、接口、夹子、重复零件和拆解风险，默认先建议不做复杂生成镜头，并给出公司沟通、镜头转化或实拍方案。
-- **电影感巨物视觉**：生成中国龙、神明、巨物、神秘存在和灾难尺度场景的图像或视频提示词。
+- **Facebook mature-audience voiceovers**: generate natural spoken scripts for North American audiences aged 35–45 from product references.
+- **Human-model first frames**: use either the natural lifestyle or beauty-presenter source prompt to generate and validate an image-to-video character master with GPT Image 2.
+- **DIY reference-video recreation**: analyze real production steps and generate a 15-second Facebook AI-video script.
+- **Parent-child DIY image-to-video**: generate three independent 9:16 American family DIY images with GPT Image 2, then compile a Veo 3.1 or Grok first-and-last-frame video prompt.
+- **Multi-scene product display**: after the voiceover, generate three independent 9:16 product images in distinct scenes by default.
+- **First-person unboxing**: route unboxing intent to the factory-old-man first-person branch.
+- **Veo / Grok video prompts**: handle talking people, product demonstrations, product-only scenes, continuous takes, and explicit multi-scene jump cuts.
+- **Seedance Fast prompts**: generate compact, continuous, physically executable video units from the product's real usage method.
+- **Detailed Seedance dot-drill and fuse-bead shots**: validate a full-size macro first frame before generating one-piece-at-a-time pearl, diamond, or fuse-bead placement actions.
+- **Face-mask preprocessing**: create a separate face-mask reference before Seedance while keeping the original portrait as the identity anchor.
+- **Complex-product risk screening**: identify wire, connector, repeated-part, and disassembly risks before generation, recommend avoiding the complex generated shot by default, and provide a company-discussion, shot-conversion, or real-footage path.
+- **Cinematic giant visuals**: create image or video prompts for Chinese dragons, deities, giants, mysterious beings, and disaster-scale scenes.
 
-## 适合哪些人
+## Who It Is For
 
-- 正在制作 TikTok、Facebook 或其他跨境电商带货视频的个人与团队。
-- 希望通过免费或低成本工具建立稳定 AI 视频生产流程的创作者。
-- 正在寻找 AI 视频制作、AIGC 内容或跨境电商素材岗位的求职者。
-- 需要在短时间内完成作品集、测试片或复杂视频样片的人。
+- Individuals and teams producing TikTok, Facebook, or other cross-border e-commerce videos.
+- Creators building a stable AI-video pipeline with free or lower-cost tools.
+- Job seekers targeting AI video, AIGC content, or cross-border e-commerce creative roles.
+- Anyone who needs to assemble a portfolio piece, test video, or complex sample quickly.
 
-## 自动路由
+## Automatic Routing
 
-`facebook-diy-video-workflow` 会根据自然语言自动选择分支：
+`facebook-diy-video-workflow` selects a branch from natural-language intent:
 
-| 用户提到 | 自动执行 |
+| User mentions | Automatic action |
 | --- | --- |
-| 真人模块、真人模特首帧、口播人物母图 | 先选择一个真人原始 Prompt，用 GPT Image 2 出图并验收，再进入视频分支 |
-| `Seedance`＋精细点钻、点钻、珍珠画、钻石画、拼豆、编号圆圈、连续点贴 | 先放大验收超近景细节图，再进入精细点钻与拼豆分支；手作语境下的“精细化电钻”按“精细化点钻”识别 |
-| 其他 `Seedance` 请求 | 进入 Seedance Fast 分支 |
-| 人脸遮罩、黑色鱼线、涂抹遮罩、人脸分离 | 先生成独立的人脸处理参考图，再继续 Seedance 视频分支 |
-| 复杂线路、多接口、大量夹子、拆解或安装过程 | 默认建议不做复杂生成镜头；公司项目先沟通换镜头，必须做时转成结果展示、局部实拍或简单动作 |
-| 亲子 DIY、母女 DIY、家庭亲子手作 | 先用 GPT Image 2 生成 3 张独立竖图，再进入 Veo/Grok 首尾帧视频分支 |
-| `Veo`、`Veo 3/3.1`、`Grok` | 进入 Veo/Grok 多场景连续多角度运镜分支 |
-| 开箱、打开包装、unboxing | 进入工厂老头第一人称开箱分支 |
-| Facebook 口播、熟龄口播、GPT 全流程 | 进入 Facebook 熟龄口播分支 |
-| DIY、参考视频拆解、制作步骤复刻 | 进入 DIY 视频拆解复刻分支 |
-| 口播完成且未触发开箱或视频工具分支 | 默认进入 3 张独立多场景产品展示分支 |
+| Human-model module, real-person first frame, or talking-head character master | Select one original human-model prompt, generate and validate it with GPT Image 2, then continue to video |
+| `Seedance` plus detailed dot-drill, diamond painting, pearl painting, fuse beads, numbered circles, or repeated placement | Validate the macro detail image at full size, then enter the detailed bead-craft branch; treat the Chinese typo `精细化电钻` as `精细化点钻` only in bead-craft context |
+| Other `Seedance` requests | Enter the Seedance Fast branch |
+| Face masking, Black Fishnet, Scribble Mask, or Face Separation | Create a separate processed face reference, then continue to the Seedance video branch |
+| Complex wires, many connectors, repeated parts, disassembly, or installation | Recommend avoiding the complex generated shot by default; on company work, discuss a shot change first, then use a finished result, real close-up, or simple action if it remains mandatory |
+| Parent-child DIY, mother-daughter DIY, family crafting | Generate three independent GPT Image 2 images, then enter the Veo/Grok first-and-last-frame branch |
+| `Veo`, `Veo 3/3.1`, or `Grok` | Enter the Veo/Grok multi-scene and continuous multi-angle camera branch |
+| Unboxing, opening the box, or opening the package | Enter the factory-old-man first-person unboxing branch |
+| Facebook voiceover, mature-audience voiceover, or GPT full workflow | Enter the Facebook spoken-script branch |
+| DIY, reference-video breakdown, or production-step recreation | Enter the DIY reference-video recreation branch |
+| Voiceover complete with no unboxing or video-tool trigger | Generate three independent multi-scene product images by default |
 
-明确点名 Seedance 且同时出现点钻或拼豆语境时，精细分支优先于 Seedance Fast。真正的电动工具不会因为“电钻”两个字误进手作分支。亲子 DIY 会覆盖普通多场景图片、开箱和直接 Veo/Grok 路由，除非用户明确要求把它们作为额外交付物。若同时明确要求 Seedance 和 Veo/Grok，Skill 会按用户指定顺序分别输出，不会合并两套原始 Prompt。
+When Seedance appears with dot-drill or fuse-bead context, the detailed branch takes priority over Seedance Fast. A real electric-drill product is not routed to the craft branch merely because the Chinese word `电钻` appears. Parent-child DIY overrides the generic product-image, unboxing, and direct Veo/Grok branches unless the user explicitly requests them as separate deliverables. When both Seedance and Veo/Grok are requested, the Skill produces separate outputs in the requested order and never merges their source prompts.
 
-## 安装
+## Installation
 
-### 让 AI 助手安装（推荐）
+### Ask an AI Assistant to Install It (Recommended)
 
-把下面这段话发给 Codex：
+Send this to Codex:
 
-> 帮我从 GitHub 安装 AIvideo Skills：
+> Install the AIvideo Skills from GitHub:
 >
 > https://github.com/Longxiaohao/AIvideo
 >
-> 安装 `facebook-diy-video-workflow` 和 `cinematic-giant-visual-prompts`，完成后校验 Skill 并告诉我是否需要刷新会话。
+> Install `facebook-diy-video-workflow` and `cinematic-giant-visual-prompts`, validate both Skills, and tell me whether I need to refresh the session.
 
-### 手动安装
+### Manual Installation
 
-先克隆仓库：
+Clone the repository:
 
 ```bash
 git clone https://github.com/Longxiaohao/AIvideo.git
 cd AIvideo
 ```
 
-Windows PowerShell：
+Windows PowerShell:
 
 ```powershell
 Copy-Item -Recurse -Force .\skills\facebook-diy-video-workflow "$env:USERPROFILE\.codex\skills\facebook-diy-video-workflow"
 Copy-Item -Recurse -Force .\skills\cinematic-giant-visual-prompts "$env:USERPROFILE\.codex\skills\cinematic-giant-visual-prompts"
 ```
 
-macOS / Linux：
+macOS / Linux:
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -214,31 +214,31 @@ cp -R skills/facebook-diy-video-workflow ~/.codex/skills/
 cp -R skills/cinematic-giant-visual-prompts ~/.codex/skills/
 ```
 
-安装或更新后，刷新当前会话，让 Codex 重新发现 Skill。
+After installing or updating, refresh the current session so Codex can rediscover the Skills.
 
-## 怎么用
+## Usage
 
-安装完成后直接使用自然语言，不需要手动指定参考文件。
+Use natural language after installation. You do not need to select reference files manually.
 
-| 你可以这样说 | Skill 会做什么 |
+| Example request | What the Skill does |
 | --- | --- |
-| 「用自然生活模特 Prompt 给这个产品做一张真人首帧」 | 要求人物穿搭与产品动作，调用案例一并先验收首帧 |
-| 「用护肤博主 Prompt 做 9:16 口播人物母图」 | 检查妆容、发箍和服装参考图，调用案例二生成首帧 |
-| 「根据这个产品图写一条 Facebook 熟龄口播脚本」 | 运行 GPT 全流程口播 Prompt |
-| 「分析这个 DIY 参考视频并复刻制作步骤」 | 运行 DIY 视频拆解复刻 Prompt |
-| 「给这个产品做亲子 DIY 场景，再用 Veo 3.1 出视频」 | 用 Image 2 逐张生成 3 张独立亲子图，再把第 1、3 张作为首尾帧生成视频 Prompt |
-| 「口播完成后给产品做 3 个不同场景展示」 | 要求产品图和尺寸对照图，生成 3 张独立 9:16 图 |
-| 「给这个产品做工厂第一人称开箱」 | 要求产品尺寸图和动作参考图，进入开箱分支 |
-| 「把这段脚本写成 Veo 3.1 多场景视频提示词」 | 输出模式判定、锁定卡、运镜路径、时间轴和 Veo Final Prompt |
-| 「给我一版 Grok 多角度产品视频提示词」 | 使用 Veo/Grok 连续多角度运镜规则 |
-| 「根据真实使用方法写 Seedance 10 秒提示词」 | 优先进入 Seedance Fast 分支 |
-| 「用 Seedance 做点钻笔连续点贴1号、2号位置，先检查这张超近景图」 | 放大验收完成区、空白编号、单颗材料和工具接触，再进入精细点钻与拼豆分支 |
-| 「给这个拼豆产品做一次放一颗的 Seedance 超近景视频」 | 检查拼豆底板、空位、材料形状和实际步骤，不套用圣母珍珠画案例里的产品事实 |
-| 「先给这张人物图做人脸遮罩，再生成 Seedance 视频」 | 保留原图，生成独立遮罩参考图后进入 Seedance 分支 |
-| 「这个产品线路和接口很复杂，先判断 AI 能不能做」 | 检查拓扑、透视和重复零件风险，给出生成、拆镜或实拍方案 |
-| 「生成暴雨城市中的中国龙视频提示词」 | 使用电影感巨物视觉 Skill |
+| "Use the natural lifestyle model prompt to make a real-person first frame for this product." | Requires the character, outfit, and product action, then runs case one and validates the frame |
+| "Use the skincare-presenter prompt for a 9:16 talking-head character master." | Checks the makeup, headband, and clothing references, then runs case two |
+| "Write a Facebook mature-audience voiceover from this product image." | Runs the GPT full-workflow voiceover prompt |
+| "Analyze this DIY reference video and recreate its production steps." | Runs the DIY reference-video recreation prompt |
+| "Create parent-child DIY scenes, then make a Veo 3.1 video." | Generates three separate Image 2 frames and uses images 1 and 3 as the first and last frames |
+| "Create three different product-display scenes after the voiceover." | Requires product and size references, then generates three independent 9:16 images |
+| "Make a factory first-person unboxing for this product." | Requires product dimensions and action references, then enters the unboxing branch |
+| "Turn this script into a Veo 3.1 multi-scene prompt." | Outputs mode selection, lock card, camera path, timeline, and final Veo prompt |
+| "Write a Grok multi-angle product-video prompt." | Applies the Veo/Grok continuous multi-angle camera rules |
+| "Write a 10-second Seedance prompt from the real usage method." | Prioritizes the Seedance Fast branch |
+| "Use Seedance to place pearls on circles 1 and 2, and check this macro image first." | Validates finished areas, empty labels, one individual piece, and tool contact before entering the detailed bead-craft branch |
+| "Make a Seedance macro video that places one fuse bead at a time." | Checks the pegboard, empty targets, piece geometry, and real method without importing facts from the Virgin Mary pearl-painting example |
+| "Mask this portrait before making the Seedance video." | Keeps the original portrait, creates a separate processed reference, then enters the Seedance branch |
+| "This product has complex wires and connectors. Check whether AI can generate it." | Checks topology, perspective, and repeated-part risks, then recommends generation, split shots, or real footage |
+| "Create a video prompt for a Chinese dragon over a stormy city." | Uses the cinematic giant-visual Skill |
 
-也可以显式调用：
+Explicit invocation is also supported:
 
 ```text
 Use $facebook-diy-video-workflow to turn my product facts and reference images into a Veo 3.1 prompt.
@@ -248,26 +248,26 @@ Use $facebook-diy-video-workflow to turn my product facts and reference images i
 Use $cinematic-giant-visual-prompts to create a realistic Chinese dragon video prompt.
 ```
 
-## 建议提供的素材
+## Recommended Inputs
 
-- 产品成品图、正侧面图和细节图。
-- 产品尺寸图或与手掌、人物、常见物体的尺寸对照图。
-- 正确使用方法、安装顺序、接触点和动作结果。
-- 爆款参考视频、视频首帧、人物母图或包装参考图。
-- 真人首帧所需的简要人物与穿搭、人物与产品动作；护肤博主案例还需要妆容、发箍和服装参考图。
-- 亲子 DIY 所需的产品图、尺寸图、材料包、DIY 工具和图片说明书参考图。
-- 精细点钻或拼豆所需的高清超近景图、产品全貌图、已完成与未完成区域、单颗材料、工具、目标位置和真实放置方法。
-- 必须逐字保留的口播、旁白和声音要求。
-- 目标工具、时长、画幅、场景数量和是否允许跳切。
+- Finished-product, front, side, and detail images.
+- A dimensions image or a scale comparison with a hand, person, or common object.
+- Correct usage, assembly order, contact points, and action results.
+- A winning reference video, first frame, character master image, or packaging reference.
+- A short character and outfit description plus the person-product action for the natural model; the beauty-presenter case also needs makeup, headband, and clothing references.
+- Product, dimensions, material-kit, DIY-tool, and picture-instruction references for parent-child DIY.
+- High-resolution macro and overview images, finished and unfinished areas, one individual piece, the tool, target positions, and the real placement method for detailed dot-drill or fuse-bead work.
+- Dialogue, voiceover, and sound requirements that must remain verbatim.
+- Target tool, duration, aspect ratio, scene count, and whether jump cuts are allowed.
 
-缺少会改变产品尺寸、制作方法或关键动作的信息时，Skill 会先询问，不会自行补造。
+If missing information would change product scale, production method, or a key action, the Skill asks for it instead of inventing it.
 
-## 项目结构
+## Project Structure
 
 ```text
 AIvideo/
 ├── README.md
-├── README.en.md
+├── README.zh-CN.md
 ├── LICENSE
 ├── docs/
 │   └── images/
@@ -301,37 +301,37 @@ AIvideo/
             └── original-prompt.md
 ```
 
-## Prompt 完整性
+## Prompt Integrity
 
-下面这些参考 Prompt 都来自我实际在跑的工作流：
+The reference prompts below come directly from the workflow I actually use:
 
-- [`gpt-full-workflow.md`](./skills/facebook-diy-video-workflow/references/gpt-full-workflow.md)：Facebook 熟龄口播 GPT 全流程。
-- [`video-breakdown-recreation-prompt.md`](./skills/facebook-diy-video-workflow/references/video-breakdown-recreation-prompt.md)：DIY 视频拆解复刻。
-- [`multi-scene-product-display-prompt.md`](./skills/facebook-diy-video-workflow/references/multi-scene-product-display-prompt.md)：3 张独立多场景产品展示。
-- [`factory-old-man-unboxing-prompt.md`](./skills/facebook-diy-video-workflow/references/factory-old-man-unboxing-prompt.md)：工厂第一人称开箱。
-- [`parent-child-diy-image-prompt.md`](./skills/facebook-diy-video-workflow/references/parent-child-diy-image-prompt.md)：3 张独立亲子 DIY 场景图。
-- [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md)：温婉自然、非网红脸的真人模特首帧。
-- [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md)：9:16 护肤博主真人口播首帧。
-- [`veo-grok-multi-scene-prompt.md`](./skills/facebook-diy-video-workflow/references/veo-grok-multi-scene-prompt.md)：Veo/Grok 连续多角度运镜与多场景视频。
-- [`seedance-detailed-bead-placement-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-detailed-bead-placement-prompt.md)：圣母珍珠画连续点贴1号、2号圆圈位置的 Seedance 2.0 中文高精度案例。
-- [`seedance-fast-10s-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-fast-10s-prompt.md)：Seedance Fast 视频单元。
-- [`original-prompt.md`](./skills/cinematic-giant-visual-prompts/references/original-prompt.md)：电影感巨物图像与视频提示词。
+- [`gpt-full-workflow.md`](./skills/facebook-diy-video-workflow/references/gpt-full-workflow.md): complete Facebook mature-audience voiceover workflow.
+- [`video-breakdown-recreation-prompt.md`](./skills/facebook-diy-video-workflow/references/video-breakdown-recreation-prompt.md): DIY reference-video breakdown and recreation.
+- [`multi-scene-product-display-prompt.md`](./skills/facebook-diy-video-workflow/references/multi-scene-product-display-prompt.md): three independent multi-scene product images.
+- [`factory-old-man-unboxing-prompt.md`](./skills/facebook-diy-video-workflow/references/factory-old-man-unboxing-prompt.md): factory first-person unboxing.
+- [`parent-child-diy-image-prompt.md`](./skills/facebook-diy-video-workflow/references/parent-child-diy-image-prompt.md): three independent parent-child DIY scene images.
+- [`natural-lifestyle-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/natural-lifestyle-first-frame-prompt.md): warm, natural, non-influencer human-model first frame.
+- [`beauty-presenter-first-frame-prompt.md`](./skills/facebook-diy-video-workflow/references/human-model-prompts/beauty-presenter-first-frame-prompt.md): 9:16 skincare-presenter talking-head first frame.
+- [`veo-grok-multi-scene-prompt.md`](./skills/facebook-diy-video-workflow/references/veo-grok-multi-scene-prompt.md): Veo/Grok continuous multi-angle camera work and multi-scene video.
+- [`seedance-detailed-bead-placement-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-detailed-bead-placement-prompt.md): field-tested Seedance 2.0 Chinese high-precision example for placing pearls on numbered circles `1` and `2` in the Virgin Mary artwork.
+- [`seedance-fast-10s-prompt.md`](./skills/facebook-diy-video-workflow/references/seedance-fast-10s-prompt.md): Seedance Fast video unit.
+- [`original-prompt.md`](./skills/cinematic-giant-visual-prompts/references/original-prompt.md): cinematic giant image and video prompts.
 
-我会继续完善 Skill 外壳的触发和路由，但上面这些参考 Prompt 默认都是不能改写的原始文本。
+I will keep improving the Skill's triggering and routing, but the reference prompts above remain immutable source text by default.
 
-人脸遮罩与复杂产品风险属于操作模块，不会改写上述实践 Prompt：
+Face masking and complex-product screening are operational modules that do not rewrite the field-tested prompts above:
 
-- [`face-mask-preprocessing.md`](./skills/facebook-diy-video-workflow/references/face-mask-preprocessing.md)：人脸参考图预处理流程。
-- [`complex-product-generation-risks.md`](./skills/facebook-diy-video-workflow/references/complex-product-generation-risks.md)：复杂产品可生成性检查与降级规则。
+- [`face-mask-preprocessing.md`](./skills/facebook-diy-video-workflow/references/face-mask-preprocessing.md): face-reference preprocessing workflow.
+- [`complex-product-generation-risks.md`](./skills/facebook-diy-video-workflow/references/complex-product-generation-risks.md): complex-product feasibility checks and fallback rules.
 
-## 仓库边界
+## Repository Boundaries
 
-仓库只保留 Skill 运行所需的指令、Prompt，以及经用户明确授权公开的文档示例图。其他产品图、参考视频、生成图片、分析缓存或压缩包不提交；实际客户素材在运行时作为附件提供，避免把客户资产公开到 GitHub。
+The repository contains the instructions and prompts required by the Skills plus documentation images explicitly authorized for public use. Other product images, reference videos, generated media, analysis caches, and archives stay outside GitHub and are supplied as runtime attachments.
 
-## 贡献
+## Contributing
 
-欢迎通过 [Issues](https://github.com/Longxiaohao/AIvideo/issues) 提交新的视频工具触发分支、真实失败案例、路由改进建议，以及 Skill 安装和兼容问题。
+[Issues](https://github.com/Longxiaohao/AIvideo/issues) are welcome for new tool routes, real failure cases, routing improvements, installation issues, and compatibility reports.
 
 ## License
 
-MIT，详见 [LICENSE](./LICENSE)。
+MIT. See [LICENSE](./LICENSE).
